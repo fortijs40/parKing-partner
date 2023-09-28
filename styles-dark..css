@@ -1,0 +1,54 @@
+:root {
+    --text: #f6f5f4;
+    --background: #0e0c0c;
+    --primary: #FE8F4E;
+    --secondary: #3a2727;
+    --accent: #74777c;
+}
+/* Rest of the dark mode styles... */
+
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+#logo {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    padding: 5px 10px; /* Add padding for the container effect */
+    border-radius: 5px; /* Add rounded corners to the container */
+}
+
+/* Add hover effect to change the background color to --primary */
+nav a:hover {
+    background-color: var(--primary);
+    color: var(--background); /* Change text color for better visibility */
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
