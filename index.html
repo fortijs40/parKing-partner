@@ -6,27 +6,77 @@
    <!-- <link id="style-link" rel="stylesheet" type="text/css" href="styles-dark.css">
     <link id="style-link" rel="stylesheet" type="text/css" href="styles-light.css"> -->
     <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <link rel="stylesheet" href="popup.css" type="text/css">
     <title>Your Website</title>
 </head>
-<body>
+
     <header>
+
         <img src="parking.logo.png" alt="Website Logo" id="logo">
         <nav>
+            <input type="checkbox" id="style-toggle.js"/>
+    <label for="style-toggle.js"></label>
             <a href="#">Home</a>
             <a href="#">Parking List</a>
             <a href="#">Contact Us</a>
             <a href="#">My Parking</a>
+            <!-- <a href="#">Login/Register</a> -->
+             <!-- <a id="login-register-button" href="#">Login/Register</a>  -->
+             <!-- <button id="login-register-button">Login/Register</button> -->
+             <a id="login-register-button" href="#">Login/Register</a>
+            <!-- <button id="login-register-button">Login/Register</button> -->
         </nav>
-       <!--<button id="style-toggle">Switch Style</button> --> 
-        <div class="container">
-            <button id="switch" onclick="toggleTheme()">Switch</button>
-        </div>
-    </header>
     
-    <div class="container">
-        
     </div>
+</div>
+
+
+</div>
+       <!--<button id="style-toggle">Switch Style</button> --> 
+    </header>
+
+    <div id="login-register-popup" class="login-popup">
+    <div class="popup-content">
+        <span class="popup-close" onclick="closePopup()">&times;</span>
+        <div class="popup-form">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <span class="popup-label" for="popup-username">Username:</span>
+                <input type="text" id="popup-username" name="popup-username" required>
+                <span class="popup-label" for="popup-password">Password:</span>
+                <input type="password" id="popup-password" name="popup-password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <!-- Main content -->
+    </div>
+
+
+
+    <!-- <input type="checkbox" id="style-toggle.js"/>
+    <label for="style-toggle.js"></label> -->
+   <!--<div class="container">
+    </div> --> 
+
    <script src="styles-switcher.js"></script> 
+   <script src="popup.js"></script>
+   <!-- <script src="popup.js"></script> -->
+
+   <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
+
+
+ <!--<script src="cours.js"></script> --> 
 
   <script>
 </script>

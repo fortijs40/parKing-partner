@@ -1,0 +1,200 @@
+/* Styles for the popup container
+#login-register-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center; /* Center horizontally and vertically 
+    align-items: center; /* Center horizontally and vertically 
+    z-index: 9999;
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Styles for the popup content */
+/* .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+} */
+
+/* .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+} */
+
+/* Styles for the close button (X symbol) */
+/* .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+} */
+
+/* .close-button:hover {
+    color: #000; 
+} */
+
+/* Styles for the forms and form inputs */
+/* .form {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+} */
+
+/* .form h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+} */
+
+/* .form-input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}  */
+
+/* .form-button {
+    background-color: #FE8F4E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+} */
+
+/* .form-button:hover {
+    background-color: #FF7C3E; /* Change color on hover} */
+   
+    
+
+#login-register-popup .popup-form {
+    text-align: center;
+}
+
+#login-register-popup .popup-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--primary); 
+}
+
+#login-register-popup .popup-form .popup-label {
+    display: block !important;
+    margin-bottom: 10px !important;
+    font-weight: bold !important;
+    color: var(--accent); 
+}
+
+#login-register-popup .popup-form input[type="text"],
+#login-register-popup .popup-form input[type="password"] {
+    width: 100% !important;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+    color: var(--accent); 
+}
+
+#login-register-popup .popup-form button[type="submit"] {
+    background-color: var(--primary); 
+    color: var(--background); 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+
+.login-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-popup.active {
+    display: block;
+}
+
+
+.popup-content {
+    position: relative;
+}
+
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+
+.popup-form {
+    text-align: center;
+}
+
+.popup-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.popup-form label {
+    display: block !important;
+    margin-bottom: 10px !important;
+    font-weight: bold !important;
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="password"] {
+    width: 100% !important;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+}
+.popup-form button[type="submit"] {
+    background-color: #FE8F4E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
