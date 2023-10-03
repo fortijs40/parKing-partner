@@ -1,0 +1,32 @@
+:root {
+    --primary-color: 254, 143, 78;
+    --secondary-color: 231, 223, 218;
+    --secondary-color-darker: 208, 199, 193;
+    --text-color: 15, 12, 10;
+    --background-color: 255, 255, 255;
+    --accent-color: 192, 53, 53;
+    --danger-color: 254, 78, 78;
+    --accept-color: 82, 187, 79;
+    --dropshadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    --inner-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, rgba(var(--primary-color), 1) 0%, #C03535 100%);
+}
+
+.dropshadow{
+    box-shadow: var(--dropshadow);
+}
+
+.gradient-text{
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-functions{
+    background: linear-gradient(180deg, rgba(var(--background-color), 1) 0%, rgba(var(--background-color), 0) 100%);
+}
+
+.dropshadow{
+    box-shadow: var(--dropshadow);
+}

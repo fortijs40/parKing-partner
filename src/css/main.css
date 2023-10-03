@@ -1,0 +1,28 @@
+@import "colors-light.css";
+@import "fonts.css";
+@import "homepage.css";
+@import "login.css";
+@import "explorer.css";
+@import "userprofile.css";
+@import "header.css";
+@import "footer.css";
+@import "interactables.css";
+
+body {
+    background-color: rgba(var(--background-color), 1);
+    color: rgba(var(--text-color), 1);
+    font-family: var(--font-family);
+    font-size: var(--normal-font-size);
+    font-weight: var(--normal-font-weight);
+    margin: 0;
+    padding: 0;
+}
+
+.hide {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
