@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS partners_id;
 CREATE TABLE partners_id (
                              partner_id bigint NOT NULL AUTO_INCREMENT,
                              type_id tinyint NOT NULL,
-                             username varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                             email varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                              hashed_password varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                              PRIMARY KEY (partner_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -68,6 +68,7 @@ CREATE TABLE parkingspots (
                               start_time varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                               end_time varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                               price decimal NOT NULL,
+							  max_spots_count int,
                               is_premium tinyint,
                               is_disabled tinyint,
                               FOREIGN KEY (partner_id) REFERENCES partners_id (partner_id),
