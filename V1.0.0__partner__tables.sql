@@ -28,7 +28,7 @@ CREATE TABLE persons (
                          email varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                          phone_number varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                          bank_account varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                         billing_address varchar() CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                         billing_address varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                          PRIMARY KEY (person_id),
                          FOREIGN KEY (partner_id) REFERENCES partners_id (partner_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -44,7 +44,7 @@ CREATE TABLE companies (
                            phone_number varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                            second_phone_no varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
                            bank_account varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                           billing_address varchar() CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                           billing_address varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                            PRIMARY KEY (company_id),
                            FOREIGN KEY (partner_id) REFERENCES partners_id (partner_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
