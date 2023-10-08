@@ -19,6 +19,10 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+body.theme-dark {
+  background-color: var(--background);
+  color: var(--text);
+}
 
 
 header {
@@ -33,7 +37,7 @@ header {
     width: 250px; 
     height: auto;
 }
-
+/* Navigation */
 nav {
     display: flex;
     gap: 40px;
@@ -41,6 +45,10 @@ nav {
     justify-content: flex-end;
     margin-left: auto;
 }
+nav.theme-dark a {
+  color: var(--text);
+}
+
 
 nav a {
     text-decoration: none;
@@ -56,7 +64,7 @@ nav a:hover {
     color: var(--background); 
 }
 
-
+/* container */
 .container {
     display: flex;
     width: 100%;
@@ -76,6 +84,12 @@ nav a:hover {
     border: 0;
     border-radius: 5px;
   }
+  .content-box {
+    background-color: #ffffff; /* Set the background color to white */
+    color: #000000; /* Set the text color to black or a suitable dark color */
+}
+
+  /* Label */
   label {
     width: 80px;
     height: 35px;
@@ -116,5 +130,45 @@ nav a:hover {
     width: 60px;
   }
 
+/* Notifications */
+  .notification-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px; /* Adjust as needed */
+    
+}
+
+.notification-button {
+  background-color: #FE8F4E;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transition */
+}
+.notification-button.dark {
+  background-color: #3a2727; /* Dark mode background color */
+  color: white; /* Dark mode text color */
+}
+
+.notification-content {
+    display: none;
+    position: absolute;
+    background-color: var(--notification-content-bg);
+    color: var(--notification-content-text);
+      /* Other styles for the notification content... */
+    min-width: 200px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Style for notification items */
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
 
   

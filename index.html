@@ -21,17 +21,22 @@
 
         <img src="parking.logo.png" alt="Website Logo" id="logo">
         <nav>
+            
             <input type="checkbox" id="style-toggle.js"/>
     <label for="style-toggle.js"></label>
+    
+    <div class="notification-dropdown">
+        <button class="notification-button" id="notification-button">&#x1F514;</button>
+        <div class="notification-content">
+            <!-- Notifications will be displayed here -->
+        </div>
+    </div>
+
             <a href="#">Home</a>
             <a href="#">Parking List</a>
             <a href="#">Contact Us</a>
             <a href="#">My Parking</a>
-            <!-- <a href="#">Login/Register</a> -->
-             <!-- <a id="login-register-button" href="#">Login/Register</a>  -->
-             <!-- <button id="login-register-button">Login/Register</button> -->
-             <a id="login-register-button" href="#">Login/Register</a>
-            <!-- <button id="login-register-button">Login/Register</button> -->
+            <a id="login-register-button" href="#">Login/Register</a>
         </nav>
     
     </div>
@@ -39,7 +44,6 @@
 
 
 </div>
-       <!--<button id="style-toggle">Switch Style</button> --> 
     </header>
 
     <div id="login-register-popup" class="login-popup">
@@ -221,7 +225,7 @@
    <script src="styles-switcher.js"></script> 
    <script src="popup.js"></script>
    <!-- <script src="popup.js"></script> -->
-
+   <script src="notifications.js"></script>
    <script>
     function openForm() {
       document.getElementById("myForm").style.display = "block";
