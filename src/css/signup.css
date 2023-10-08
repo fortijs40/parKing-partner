@@ -1,0 +1,8 @@
+@import "header.css";
+@import "interactables.css";
+@import "fonts.css";
+
+.area-left{
+    container: initial;
+    text-align: left;
+}

@@ -1,0 +1,306 @@
+.account-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 50px;
+    margin-top: 150px;
+}
+
+.user-lvl-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.user-current-lvl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user-info-container{
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.user-xp-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(var(--secondary-color));
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 360px;
+}
+
+.user-xp-bar{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(var(--background-color));
+    position: relative;
+}
+
+.user-xp-bar-fill{
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--gradient);
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.user-xp-bar-text{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(var(--text-color));
+    mix-blend-mode: overlay;
+}
+
+.add-space-button{
+    height: fit-content;
+    align-self: center;
+}
+
+.user-info-left{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    min-width: 400px;
+}
+
+.current-plan{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.user-pfp{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    background-size: contain;
+    border: 12px solid rgb(var(--secondary-color));
+}
+
+.user-settings-button{
+    position: relative;
+    bottom: -40px;
+    left: 80px;
+    background-color: rgb(var(--secondary-color));
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-settings-button:hover{
+    transform: scaleX(1.1) scaleY(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-parking-spaces-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1fr);
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(var(--secondary-color));
+}
+
+.parking-spaces{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.parking-space{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(var(--background-color));
+}
+
+.parking-space-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.parking-space-info-details, .parking-space-info-details > *{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.parking-space-info-details{
+    gap: 20px;
+}
+
+.user-info-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.user-account-settings-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 30px;
+    margin: 15px 0;
+}
+
+.user-account-settings-input{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-account-password-change{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.user-account-settings-password-confirm{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: row;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.user-account-settings-password-confirm > div{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-delete-account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.user-account-update{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.parking-fav-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1040px) {
+    .user-info-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1fr);
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .user-info-left{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1fr);
+        align-items: stretch;
+        gap: 20px;
+        width: 100%;
+        min-width: 400px;
+    }
+
+    .user-info-right{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1fr);
+        align-items: stretch;
+        gap: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .parking-fav-buttons{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 687px) {
+    .user-account-settings-inputs{
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+        margin: 15px 0;
+    }
+
+    .user-account-settings-password-confirm{
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+        margin: 15px 0;
+    }
+}
