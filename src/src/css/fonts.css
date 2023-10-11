@@ -1,0 +1,58 @@
+:root{
+    font-family: "Inter", sans-serif;
+
+    --h1-font-size: 3rem;
+    --h1-font-weight: 700;
+    --h1-line-height: 3.5rem;
+
+    --h2-font-size: 2rem;
+    --h2-font-weight: 700;
+    --h2-line-height: 2.5rem;
+
+    --h3-font-size: 1.5rem;
+    --h3-font-weight: 400;
+    --h3-line-height: 2rem;
+
+    --normal-font-size: 1.125rem;
+    --normal-font-weight: 400;
+
+    --sub-font-size: 1rem;
+    --sub-font-weight: 400;
+
+    --button-font-size: 1.125rem;
+    --button-font-weight: 400;
+
+}
+
+h1{
+    font-size: var(--h1-font-size);
+    font-weight: var(--h1-font-weight);
+    line-height: var(--h1-line-height);
+}
+
+h2{
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+    line-height: var(--h2-line-height);
+}
+
+h3{
+    font-size: var(--h3-font-size);
+    font-weight: var(--h3-font-weight);
+    line-height: var(--h3-line-height);
+}
+
+p, div{
+    font-size: var(--normal-font-size);
+    font-weight: var(--normal-font-weight);
+}
+
+span{
+    font-size: var(--sub-font-size);
+    font-weight: var(--sub-font-weight);
+}
+
+button{
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+}
