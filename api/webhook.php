@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $payload = json_decode(file_get_contents('php://input'), true);
 
-    //echo 'Payload: ' . json_encode($payload);
+    echo 'Payload: ' . json_encode($payload);
 
     // funcij pectam lai updatotu datubazi n stuff, idk yet
     processPayload($payload);
@@ -30,15 +30,28 @@ function processPayload($payload) {
     $partnerId = $payload['partner_id'];
     $reservation = $payload['reservation'];
     $review = $payload['review'];
+    $report = $payload['report'];
 
     // Update the reservations table
     updateReservations($reservation);
 
     // Check if a review is included in the payload and update the reviews table
     if (isset($review)) {
-        echo 'Review: ' . json_encode($review);
+        //echo 'Review: ' . json_encode($review);
         updateReviews($review);
     }
+    if (isset($report)) {
+        //echo 'Report: ' . json_encode($report);
+        updateReports($report);
+    }
+    if (isset($reservation)) {
+        //echo 'Reservation: ' . json_encode($reservation);
+        updateReservations($reservation);
+    }
+
+}
+function updateReports($report) {
+    // update the reports table
 
 }
 
