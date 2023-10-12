@@ -2,13 +2,14 @@
 
 require_once '../php/connection.php';
 
-
 function processPayload($payload) {
 
     // Check if a review is included in the payload and update the reviews table
     if (isset($payload['review'])) {
         $reviewData = $payload['review'];
         echo 'Review Payload: ' . json_encode($reviewData);
+        //Need to create so it sends a notification to the partner
+
         updateReviews($reviewData);
     }
     
@@ -16,6 +17,7 @@ function processPayload($payload) {
     if (isset($payload['report'])) {
         $reportData = $payload['report'];
         echo 'Report Payload: ' . json_encode($reportData);
+        //Need to create so it sends a notification to the partner
         updateReports($reportData);
     }
     
@@ -23,6 +25,7 @@ function processPayload($payload) {
     if (isset($payload['reservation'])) {
         $reservationData = $payload['reservation'];
         echo 'Reservation Payload: ' . json_encode($reservationData);
+        //Need to create so it sends a notification to the partner
         updateReservations($reservationData);
     }
 }
