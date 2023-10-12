@@ -17,8 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // funcij pectam lai updatotu datubazi n stuff, idk yet
     processPayload($payload); //funkcija no modifyTables.php :)
 
-    echo '<script>window.updateParkingData(' . json_encode($payload) . ')</script>';
-
     // Respond with a 200 OK status
     http_response_code(200);
     echo 'Webhook received successfully';
