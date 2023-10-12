@@ -36,8 +36,46 @@
     border-bottom: 1px solid #eee;
 }
 .notification-icon:hover{
-    animation: wigglePulse 1s infinite;
+    animation: wigglePulse 2s infinite;
+   
+    /* animation: bell-ring 4s infinite; */
+
 }
+
+
+/* @keyframes bell-ring {
+
+    0% {
+
+        transform: translate(-50%, -50%);
+
+    }
+
+    5%, 15% {
+
+        transform: translate(-50%, -50%) rotate(10deg);
+
+    }
+
+    10%, 20% {
+
+        transform: translate(-50%, -50%) rotate(-10deg);
+
+    }
+
+    25%  {
+
+        transform: translate(-50%, -50%) rotate(0deg);
+
+    }
+
+    100% {
+
+        transform: translate(-50%, -50%) rotate(0deg);
+
+    }
+
+} */
 
 @keyframes wigglePulse{
     0%{
