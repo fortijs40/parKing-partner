@@ -1,61 +1,26 @@
 .account-container{
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr);
     gap: 20px;
     margin: 0 50px;
     margin-top: 100px;
 }
 
-.user-lvl-container{
-    display: grid;
-    grid-template-columns: 0.1fr 0.8fr 0.1fr;
-    grid-template-rows: 1fr;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgb(var(--secondary-color));
-}
-
-.user-current-lvl{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 .user-info-container{
     display: grid;
-    grid-template-columns: 0.8fr 0.2fr;
+    grid-template-columns: 0.6fr 0.9fr 0.9fr;
     grid-template-rows: 1fr;
+    gap: 20px;
     justify-content: space-between;
     align-items: stretch;
 }
 
-.user-xp-container{
+.title-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-}
-
-.user-xp-bar{
     width: 100%;
-    height: 40px;
-    border-radius: 10px;
-    background-color: rgb(var(--background-color));
-    position: relative;
-}
-
-.user-xp-bar-fill{
-    width: 50%;
-    height: 100%;
-    border-radius: 10px;
-    background: var(--gradient);
-    position: relative;
-    top: 0;
-    left: 0;
 }
 
 .user-info-left{
@@ -67,57 +32,136 @@
     width: 100%;
 }
 
-.current-plan{
+.user-name-and-at{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding-top: 69px;
+    padding-bottom: 69px;
     border-radius: 10px;
     background-color: rgb(var(--secondary-color));
+    width: 100%;
 }
 
-.user-parking-spaces-container{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr);
-    gap: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgb(var(--secondary-color));
-}
-
-.parking-spaces{
+.business-name {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 400px;
-    overflow-y: scroll;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 69px;
+    padding-bottom: 69px;
+    border-radius: 10px;
+    background-color: rgb(var(--secondary-color));
+    width: 100%;
 }
 
-.parking-space{
+.user-balance-container{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 69px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(var(--secondary-color));
+    width: 100%;
+}
+
+.user-withdraw-balance-container{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: var(--gradient);
+    width: 100%;
+}
+
+.user-info-mid{
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
     gap: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgb(var(--background-color));
+    width: 100%;
 }
 
-.parking-space-info{
+.user-account-details{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgb(var(--secondary-color));
+}
+
+.user-account-details-input{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
     flex-direction: column;
     gap: 10px;
+    margin: 25px 0;
+    width: 175%;
+    font-size: x-large;
 }
 
-.parking-space-info-details, .parking-space-info-details > *{
+.user-account-details-input-phones {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 25px;
+    margin-top: 50px;
 }
 
-.parking-space-info-details{
-    gap: 20px;
+.user-account-details-input-email-reg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 50px;
+    margin-top: 25px;
+}
+
+.user-account-details-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-account-details-input-container label {
+    text-align: left;
+}
+
+.user-bank-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgb(var(--secondary-color));
+}
+
+.user-bank-details-input{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+    margin: 25px 0;
+    width: 175%;
+    font-size: x-large;
+}
+
+.user-bank-details-input textarea {
+    height: 120px;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
 }
 
 .user-info-right{
@@ -129,13 +173,21 @@
     width: 100%;
 }
 
+.user-settings-title{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--gradient);
+}
+
 .user-account-settings{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
     border-radius: 10px;
     background-color: rgb(var(--secondary-color));
 }
@@ -145,6 +197,7 @@
     justify-content: center;
     align-items: stretch;
     flex-direction: column;
+    padding: 10px;
     gap: 10px;
     margin: 15px 0;
 }
@@ -163,10 +216,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
     padding: 20px;
     border-radius: 10px;
     background-color: rgb(var(--secondary-color));
+}
+.user-delete-account button {
+    background-color: rgb(var(--accent-color));
+    padding: 20px;
 }
 
 .user-account-update{
@@ -174,4 +230,5 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 }
