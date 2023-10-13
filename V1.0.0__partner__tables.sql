@@ -68,9 +68,11 @@ CREATE TABLE parkingspots (
                               start_time varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                               end_time varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                               price decimal NOT NULL,
-							  max_spots_count int,
+                              max_spot_count int,
                               is_premium tinyint,
                               is_disabled tinyint,
+							  add_info varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+							  rating decimal,
                               FOREIGN KEY (partner_id) REFERENCES partners_id (partner_id),
                               FOREIGN KEY (spot_type) REFERENCES spot_types (type_id),
                               PRIMARY KEY (spot_id)
