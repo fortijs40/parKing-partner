@@ -43,17 +43,17 @@
     <div class="account-container">
         <div class="user-info-container">
             <div class="user-info-left">
+                <div class="user-settings-title">
+                    <h2>Your Profile</h2>
+                </div>
                 <div class="user-name-and-at">
                     <img src="src/img/function3.svg" alt="function 3" class="function-img" style="margin-bottom: 50px;">
-                    <h1 class="gradient-text" style="margin-bottom: 25px;">Forty Jones</h1>
+                    <h1 class="gradient-text" style="margin-bottom: 25px;" name="fullName">Forty Jones</h1> <!-- Te full name, i guess no db concat, ja var? -->
                     <h2>@fortyJ</h2>
                 </div>
                 <div class="user-balance-container">
-                    <h2>Current balance:</h2>
-                    <h2 class="gradient-text"> 6.90€</h2>
-                </div>
-                <div class="user-withdraw-balance-container">
-                    <h2>Withdraw from balance</h2>
+                    <h2>Total Earnings:</h2>
+                    <h2 class="gradient-text" name="earnings"> 6.90€</h2>
                 </div>
             </div>
 
@@ -64,8 +64,8 @@
                 <div class="user-account-details">
                     <div class="user-account-details">
                         <div class="user-account-details-input">
-                            <label for="phoneNr">Phone number</label>
-                            <input type="text" name="phoneNr" id="phoneNr" placeholder="+371 21 337 420" class="input" style="font-size: 24px;">
+                            <label for="phone_number">Phone number</label>
+                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="font-size: 24px;">
                         </div>
                         <div class="user-account-details-input">
                             <label for="email">Email</label>
@@ -76,16 +76,17 @@
                 <div class="user-bank-details">
                     <div class="user-bank-details">
                         <div class="user-bank-details-input">
-                            <label for="bankAcc">Bank account</label>
-                            <input type="text" name="bankAcc" id="bankAcc" placeholder="LV80*************5001" class="input" style="font-size: 24px;">
+                            <label for="bank_account">Bank account</label>
+                            <input type="text" name="bank_account" id="bank_account" placeholder="LV80*************5001" class="input" style="font-size: 24px;">
                         </div>
                         <div class="user-bank-details-input">
-                            <label for="billingAdr">Billing adress</label>
-                            <textarea name="billingAdr" id="billingAdr" placeholder="Maskavas iela 208, Latgales priekšpilsēta, Rīga, Latvija, LV-1019" class="input" style="font-size: 24px;"></textarea>
+                            <label for="billing_address">Billing adress</label>
+                            <textarea name="billing_address" id="billing_address" placeholder="Maskavas iela 208, Latgales priekšpilsēta, Rīga, Latvija, LV-1019" class="input" style="font-size: 24px;"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="user-info-right">
                 <div class="user-settings-title">
                     <h2>Account Settings</h2>
@@ -97,8 +98,8 @@
                             <input type="text" name="email" id="email" placeholder="your@email.com" class="input">
                         </div>
                         <div class="user-account-settings-input">
-                            <label for="phoneNr">Phone number</label>
-                            <input type="text" name="phoneNr" id="phoneNr" placeholder="+371 21 337 420" class="input">
+                            <label for="phone_number">Phone number</label>
+                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input">
                         </div>
                         <div class="user-account-settings-input">
                             <label for="password">Password</label>
@@ -120,9 +121,9 @@
                     </div>
                 </div>
                 <div class="user-account-settings">
-                        <div class="user-delete-account">
-                            <button class="btn btn-primary">Delete Account</button>
-                        </div>
+                    <div class="user-delete-account">
+                        <button class="btn btn-primary">Delete Account</button>
+                    </div>
                 </div>
             </div>
         </div>

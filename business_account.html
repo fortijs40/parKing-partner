@@ -43,16 +43,16 @@
     <div class="account-container">
         <div class="user-info-container">
             <div class="user-info-left">
+                <div class="user-settings-title">
+                    <h2>Your Profile</h2>
+                </div>
                 <div class="business-name">
-                    <img src="src/img/function3.svg" alt="function 3" class="function-img" style="margin-bottom: 50px;">
-                    <h1 class="gradient-text" style="margin-bottom: 25px;">SIA "Inter Cars Latvia"</h1>
+                    <img src="src/img/function3.svg" alt="function 3" class="function-img" style="margin-bottom: 35px;">
+                    <h1 class="gradient-text" style="margin-bottom: 25px;" name="company_name">SIA "Inter Cars Latvia"</h1>
                 </div>
                 <div class="user-balance-container">
-                    <h2>Current balance:</h2>
-                    <h2 class="gradient-text"> 13.37€</h2>
-                </div>
-                <div class="user-withdraw-balance-container">
-                    <h2>Withdraw from balance</h2>
+                    <h2>Total Earnings:</h2>
+                    <h2 class="gradient-text" name="earnings"> 13.37€</h2>
                 </div>
             </div>
 
@@ -64,12 +64,12 @@
                     <div class="user-account-details">
                         <div class="user-account-details-input-phones">
                             <div class="user-account-details-input-container">
-                                <label for="phoneNr" style="font-size: 20px;">Phone number</label>
-                                <input type="text" name="phoneNr" id="phoneNr" placeholder="+371 21 337 420" class="input" >
+                                <label for="phone_number" style="font-size: 20px;">Phone number</label>
+                                <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" >
                             </div>
                             <div class="user-account-details-input-container">
-                                <label for="phoneNrSec" style="font-size: 20px;">2nd phone No.(optional)</label>
-                                <input type="text" name="phoneNrSec" id="phoneNrSec" placeholder="+371 26969696" class="input">
+                                <label for="second_phone_no" style="font-size: 20px;">2nd phone No.(optional)</label>
+                                <input type="text" name="second_phone_no" id="second_phone_no" placeholder="+371 26969696" class="input">
                             </div>
                         </div>                    
                         <div class="user-account-details-input-email-reg">
@@ -78,8 +78,8 @@
                                 <input type="text" name="email" id="email" placeholder="ICLV@intercars.eu" class="input">
                             </div>
                             <div class="user-account-details-input-container">
-                                <label for="regNumber" style="font-size: 20px;">Reg. number</label>
-                                <input type="text" name="regNumber" id="regNumber" placeholder="40103315276" class="input">
+                                <label for="reg_no" style="font-size: 20px;">Reg. number</label>
+                                <input type="text" name="reg_no" id="reg_no" placeholder="40103315276" class="input">
                             </div>
                         </div>     
                     </div>
@@ -87,12 +87,12 @@
                 <div class="user-bank-details">
                     <div class="user-bank-details">
                         <div class="user-bank-details-input">
-                            <label for="bankAcc">Bank account</label>
-                            <input type="text" name="bankAcc" id="bankAcc" placeholder="LV82*************8305" class="input" style="font-size: 24px;">
+                            <label for="bank_account">Bank account</label>
+                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 24px;">
                         </div>
                         <div class="user-bank-details-input">
-                            <label for="billingAdr">Billing adress</label>
-                            <textarea name="billingAdr" id="billingAdr" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px;"></textarea>
+                            <label for="billing_address">Billing adress</label>
+                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
                             <input type="text" name="email" id="email" placeholder="your@email.com" class="input">
                         </div>
                         <div class="user-account-settings-input">
-                            <label for="phoneNr">Phone number</label>
-                            <input type="text" name="phoneNr" id="phoneNr" placeholder="+371 21 337 420" class="input">
+                            <label for="phone_number">Phone number</label>
+                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input">
                         </div>
                         <div class="user-account-settings-input">
                             <label for="password">Password</label>
@@ -131,9 +131,9 @@
                     </div>
                 </div>
                 <div class="user-account-settings">
-                        <div class="user-delete-account">
-                            <button class="btn btn-primary">Delete Account</button>
-                        </div>
+                    <div class="user-delete-account">
+                        <button class="btn btn-primary">Delete Account</button>
+                    </div>
                 </div>
             </div>
         </div>

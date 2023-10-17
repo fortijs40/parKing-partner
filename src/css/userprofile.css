@@ -55,6 +55,7 @@
     border-radius: 10px;
     background-color: rgb(var(--secondary-color));
     width: 100%;
+    height: 100%;
 }
 
 .user-balance-container{
@@ -66,17 +67,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: rgb(var(--secondary-color));
-    width: 100%;
-}
-
-.user-withdraw-balance-container{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    border-radius: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background: var(--gradient);
     width: 100%;
 }
 
@@ -231,4 +221,13 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 20px;
+}
+
+.business-name,
+.user-account-settings,
+.user-balance-container,
+.user-name-and-at,
+.user-account-details:nth-of-type(2),
+.user-info-mid > :nth-child(3) {
+  outline: 2px solid #d86508;
 }
