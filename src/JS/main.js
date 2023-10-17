@@ -45,3 +45,26 @@ function validatePassword(){
 
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
+
+// Get the links
+const companyLink = document.getElementById("company-link");
+const personLink = document.getElementById("person-link");
+
+// Function to set the active link
+function setActiveLink(link) {
+    // Remove the "active" class from all links
+    companyLink.classList.remove("active");
+    personLink.classList.remove("active");
+
+    // Add the "active" class to the specified link
+    link.classList.add("active");
+}
+
+// Event listeners to set the active link
+companyLink.addEventListener("click", function() {
+    setActiveLink(companyLink);
+});
+
+personLink.addEventListener("click", function() {
+    setActiveLink(personLink);
+});

@@ -61,7 +61,7 @@
                 </defs>
             </svg>
         </div>
-        <div class="container">
+        <div>
             <p>
                 Register now and unlock the door to hassle-free perks and easy earnings.
                 Your parking venture starts here!
@@ -71,23 +71,23 @@
             </p>
         </div>
     </div>
-    <div class="sign_up-right">
+    <div class="sign-up-right">
         <div class="container">
-            <div class="header">
+            <div class="signup">
                 <p>
                     Sign Up
                 </p>
             </div>
             <div class="company-person">
-                <a href="register.html">
+                <a href="register.html" id="company-link">
                     Company
                 </a>
-                <a href="person_reg.html">
+                <a href="person_reg.html" id="person-link">
                     Person
                 </a>
             </div>
-            <div class="signup-form">
-                <form action="../src/php/company_reg.php">
+            <div class="">
+                <form action="../src/php/company_reg.php", method="post">
                     <div>
                         <label for="company">Your Company</label>
                         <input type="text" id="company" placeholder="Company name" required>
@@ -102,7 +102,7 @@
                     </div>
                     <div>
                         <label for="phone">Phone number</label>
-                        <input type="text" id="phone" placeholder="Your phone number" required>
+                        <input type="text" id="phone" placeholder="Company phone number" required>
                     </div>
                     <div>
                         <label for="sec-phone">Second phone {optional}</label>
@@ -113,12 +113,12 @@
                         <input type="password" id="password" placeholder="Password" required>
                     </div>
                     <div>
-                        <label for="conf-password">Retype</label>
+                        <label for="conf-password">Confirm Password</label>
                         <input type="password" id="conf-password">
                     </div>
                     <div>
                         <label for="signup"></label>
-                        <input type="submit" id="signup" class="btn-primary" placeholder="Sign Up!">
+                        <input type="submit" id="signup" value="Sign Up!" class="btn btn-primary">
                     </div>
                 </form>
             </div>

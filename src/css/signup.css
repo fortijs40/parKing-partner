@@ -1,8 +1,64 @@
-@import "header.css";
-@import "interactables.css";
-@import "fonts.css";
-
-.area-left{
-    container: initial;
-    text-align: left;
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+
+.area-left {
+    width: 25%; /* Adjust the width as needed */
+    border: 2px solid #000; /* Add borders */
+    margin: 10px; /* Add margin for separation */
+    padding: 20px;
+}
+
+.sign-up-right {
+    width: 25%; /* Adjust the width as needed */
+    border: 2px solid #000; /* Add borders */
+    margin: 10px; /* Add margin for separation */
+    padding: 20px;
+}
+
+.area-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-bottom: 10px; /* Spacing between logo and content */
+}
+
+.content {
+    text-align: center;
+}
+
+.signup{
+    text-align: center;
+    align-content: center;
+}
+
+/* Define styles for the active link */
+.company-person a.active {
+    background-color: #FBCF61; /* Add your desired background color */
+    color: #000; /* Add your desired text color */
+    font-weight: bold; /* Make the text bold or use your preferred style */
+    /* Add any other styles to make the active link stand out */
+}
+
+/* Define styles for the non-active links */
+.company-person a {
+    text-decoration: none; /* Remove the underline on all links */
+    padding: 5px 10px; /* Add padding as needed */
+    margin: 5px; /* Add margin as needed for spacing between links */
+}
+
+/* Add any other styles you want for the links */
+
+
+
+/* Add more specific styles for your elements as needed */

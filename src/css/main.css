@@ -9,6 +9,7 @@
 @import "interactables.css";
 @import "popup.css";
 @import "maps.css";
+@import "signup.css";
 
 body {
     background-color: rgba(var(--background-color), 1);
