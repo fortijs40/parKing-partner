@@ -1,3 +1,2 @@
 *.log
 /api/config.php
-php/connection.php
