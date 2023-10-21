@@ -7,8 +7,9 @@ $_SESSION['count'] = 1;
 
 require_once 'connection.php';
 
-if(isset($_POST['submit'])){
 
+if(isset($_POST['submit'])){
+    var_dump($_POST); 
     $_username = NULL;
     $_email = NULL;
     $_password = NULL;
@@ -16,11 +17,11 @@ if(isset($_POST['submit'])){
     $_type_id = NULL;
 
     if (isset($_POST['email'])) {
-        $_email=test_input($_POST['email']);
+        $_email = test_input($_POST['email']);
     }
-
+    
     if (isset($_POST['password'])) {
-        $_password=test_input($_POST['password']);
+        $_password = test_input($_POST['password']);
     }
 
 }
@@ -34,7 +35,7 @@ function test_input($_data) {
 }
 
 try {
-
+    require_once 'connection.php';
     $stmt = $conn->prepare("SELECT partner_id, type_id, email, hashed_password FROM partners_id WHERE email = :_email");
     $stmt->bindValue(':_email', $_email, PDO::PARAM_STR);
 
@@ -70,9 +71,8 @@ if (password_verify($_password, $_hashed_password)) {
     }
 
 } else {
-    echo 'Incorrect username or password.';
+    header("Location: ../login.html");
 }
-
 
 $conn = null;
 

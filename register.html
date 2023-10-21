@@ -70,7 +70,7 @@
             </div>
             <div class="to-login">
                 <p>
-                    Already registered? Click <a href="../login/login.html" class="link">here</a>
+                    Already registered? Click <a href="./login.html" class="link">here</a>
                 </p>
             </div>
         </div>
@@ -91,44 +91,44 @@
                 </a>
             </div>
             <div class="">
-                <form action="../src/php/company_reg.php", method="post">
+                <form action="/php/company_reg.php" method="post">
                     <div>
                         <label for="company">Your Company</label>
-                        <input type="text" id="company" placeholder="Company name" required>
+                        <input type="text" id="company" name="company_name" placeholder="Company name" required>
                     </div>
                     <div>
                         <label for="registration">Registration number</label>
-                        <input type="text" id="registration" placeholder="Registration number" required>
+                        <input type="text" id="registration" name="reg_no" placeholder="Registration number" required>
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="name@example.com" required>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
                     </div>
                     <div>
                         <label for="phone">Phone number</label>
-                        <input type="text" id="phone" placeholder="Company phone number" required>
+                        <input type="text" id="phone" name="phone_number" placeholder="Company phone number" required>
                     </div>
                     <div>
                         <label for="sec-phone">Second phone {optional}</label>
-                        <input type="text" id="sec-phone" placeholder="Second phone number">
+                        <input type="text" id="sec-phone" name="sec_phone" placeholder="Second phone number">
                     </div>
                     <div>
                         <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Password" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
                     </div>
                     <div>
                         <label for="conf-password">Confirm Password</label>
-                        <input type="password" id="conf-password">
+                        <input type="password" id="conf-password" name="password_confirmed">
                     </div>
                     <div>
                         <label for="signup"></label>
                         <input type="submit" id="signup" value="Sign Up!" class="btn btn-primary">
                     </div>
-                </form>
+                </form>                
             </div>
         </div>
     </div>
-<script src="../src/JS/main.js"></script>
+<script src="/src/JS/main.js"></script>
 
 </body>
 </html>
