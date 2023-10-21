@@ -22,7 +22,7 @@
 
 .btn{
     border: none;
-    color: (var(--text-color));
+    color: var(--text-color);
     padding: 10px 20px;
     border-radius: 10px;
     text-align: center;
@@ -31,6 +31,10 @@
     font-size: 16px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    max-height: min-content;
+    height: min-content;
+    align-self: center;
+    width: fit-content;
 }
 
 .btn:hover{
@@ -76,5 +80,35 @@
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: rgb(var(--background-color));
+    background-color: rgb(var(--secondary-color));
+    color: rgb(var(--text-color));
+}
+
+.input:focus{
+    outline: none;
+    box-shadow: inset var(--dropshadow);
+}
+
+.input-textarea{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 17px;
+    background-color: rgb(var(--secondary-color));
+    color: rgb(var(--text-color));
+    resize: vertical;
+    height: 100px;
+    max-height: 200px;
+    min-height: 100px;
+    overflow-y: auto;
+}
+
+.max-input-width{
+    width: 100%;
+}
+
+.input-stack{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

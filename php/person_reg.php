@@ -104,4 +104,5 @@ $conn = null;
 
 echo '<br>';
 
-?>
+header('./login.html');
+exit;
