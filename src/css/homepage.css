@@ -17,7 +17,7 @@
 
 .hero{
     display: grid;
-    grid-template-columns: minmax(200px, 60%) minmax(200px, 40%);
+    grid-template-columns: minmax(200px, 70%) minmax(200px, 30%);
     grid-template-rows: 1fr;
     gap: 50px 5%;
     justify-content: space-between;
@@ -33,6 +33,10 @@
     grid-template-rows: repeat(1fr);
     gap: 0px 0px;
     max-width: 700px;
+}
+
+.hero-text > h1 {
+    margin-bottom: 10px;
 }
 
 .hero-text > h2 {
@@ -151,6 +155,7 @@
     width: 30px;
     display: flex;
     object-fit: contain;
+    padding: 10px 15px;
 }
 
 .app-dl{
@@ -169,16 +174,9 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    max-width: 700px;
-    gap: 30px;
-    margin: 40px;
-}
-
-.google-play{
-    background-color: rgb(var(--secondary-color));
-    width: 250px;
-    justify-self: right;
-    border-radius: 10px;
+    max-width: 900px;
+    gap: 50px;
+    margin: 20px;
 }
 
 .plans{
@@ -297,9 +295,10 @@
         text-align: center;
         justify-self: center;
         padding-bottom: 10px;
+        
     }
     .feature-title{
-        width: calc(100% - 20px);
+        width: calc(10% - 20px);
         min-width: 90%;
     }
     .plans-container{
