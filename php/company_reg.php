@@ -103,4 +103,5 @@ $conn = null;
 
 echo '<br>';
 
-?>
+header('company-account.html');
+exit;

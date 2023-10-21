@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.area-left {
+    width: 25%;
+    height: 40%;
+    border: 2px solid #000;
+    margin: 50px 10px 10px;
+    padding: 20px;
+}
+
+.sign-up-right {
+    width: 25%;
+    height: 40%;
+    border: 2px solid #000;
+    margin: 50px 10px 10px;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.area-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.content {
+    text-align: center;
+}
+
+.signup{
+    text-align: center;
+    align-content: space-between;
+    margin-top: 50px;
+    display: flex;
+}
+
+.company-person a.active {
+    background-color: #FBCF61;
+    color: #000;
+    font-weight: bold;
+}
+
+.company-person a {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+.to-login {
+    margin-top: 200px;
+}
+
+.text {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    font-size: large;
+}

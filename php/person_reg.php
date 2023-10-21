@@ -104,4 +104,6 @@ $conn = null;
 
 echo '<br>';
 
+header('account.html');
+exit;
 ?>
