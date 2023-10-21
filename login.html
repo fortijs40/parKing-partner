@@ -21,7 +21,7 @@
                 <div class="header-links-clickable">
                     <a href="index.php" class="link">Homepage</a>
                     <a href="parking_list.php" class="link">Parking List</a>
-                    <button class="btn btn-primary" onclick="window.location.href='login.php'">My Parking</button>
+                    <button class="btn btn-primary" onclick="window.location.href='login.html'">Log IN</button>
                 </div>
                 <div>
                     <svg id="light-theme-toggle" class="theme-change" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -41,23 +41,23 @@
     </header>
     <div class="login-container">
         <h1 class="login-title">Login</h1>
-        <form action="src/php/login.php" method="post" class="login-form">
+        <form action="./php/authentication.php" method="post" class="login-form">
             <div class="login-body">
                 <div class="login-input-container">
-                    <label for="username" class="login-label">Email</label>
-                    <input type="text" name="username" id="username" placeholder="example@email.com" required class="input">
+                    <label for="email" class="login-label">Email</label>
+                    <input type="text" name="email" id="email" placeholder="example@email.com" required class="input">
                 </div>
                 <div class="login-input-container">
                     <label for="password" class="login-label">Password</label>
                     <input type="password" name="password" id="password" placeholder="Your password" required class="input">
                 </div>
                 <div>
-                    <input type="submit" value="Login" class="btn btn-primary" onclick="window.location.href='user_account.php'">
+                    <input type="submit" value="Login" class="btn btn-primary" name="submit">
                 </div>
             </div>
             <div class="login-footer">
                 <p>Don't have an account?</p>
-                <a href="register.php" class="link"> Click here to register</a>
+                <a href="register.html" class="link"> Click here to register</a>
             </div>
         </form>
     </div>
