@@ -80,7 +80,7 @@
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: rgb(var(--secondary-color));
+    background-color: white;
     color: rgb(var(--text-color));
 }
 
