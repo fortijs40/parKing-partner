@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-    session_name('session_1');
-    session_start();
+    <?php
+        session_name('session_1');
+        session_start();
 
-    if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
-        header("Location: login.php");
-        exit();
-    }
-?>
+        require_once '.\php\connection.php';
+
+        if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
+            header("Location: login.php");
+            exit();
+        }
+
+        $companyId = $_SESSION['company_id'];
+
+        $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :company_id");
+        $stmt->bindParam(':company_id', $companyId);
+        $stmt->execute();
+        $partnerData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $conn = null;
+    ?>
 
 
 <head>
@@ -32,7 +43,6 @@
                     <a href="index.html" class="link">Homepage</a>
                     <a href="parking_list.php" class="link">Parking List</a>
                     <a href="business_account.php" class="link">My Account</a>
-                    <button class="btn btn-primary" onclick="window.location.href='login.php'">My Parking</button>
                 </div>
                 <div>
                     <svg id="light-theme-toggle" class="theme-change" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -63,7 +73,7 @@
                 </div>
                 <div class="business-name">
                     <img src="src/img/function3.svg" alt="function 3" class="function-img" style="margin-bottom: 35px;">
-                    <h1 class="gradient-text" style="margin-bottom: 25px;" name="company_name">SIA "Inter Cars Latvia"</h1>
+                    <h1 class="gradient-text" style="margin-bottom: 25px;" name="company_name"><?php echo $partnerData['company_name'];?></h1>
                 </div>
                 <div class="user-balance-container">
                     <h2>Total Earnings:</h2>
@@ -80,21 +90,21 @@
                         <div class="user-account-details-input-phones">
                             <div class="user-account-details-input-container">
                                 <label for="phone_number" style="font-size: 20px;">Phone number</label>
-                                <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" >
+                                <input type="text" name="phone_number" id="phone_number" value="<?php echo $partnerData['phone_number'];?>" class="input" style="color: black">
                             </div>
                             <div class="user-account-details-input-container">
                                 <label for="second_phone_no" style="font-size: 20px;">2nd phone No.(optional)</label>
-                                <input type="text" name="second_phone_no" id="second_phone_no" placeholder="+371 26969696" class="input">
+                                <input type="text" name="second_phone_no" id="second_phone_no" value="<?php echo $partnerData['second_phone_no'];?>" class="input" style="color: black">
                             </div>
                         </div>                    
                         <div class="user-account-details-input-email-reg">
                             <div class="user-account-details-input-container">
                                 <label for="email" style="font-size: 20px;">Email</label>
-                                <input type="text" name="email" id="email" placeholder="ICLV@intercars.eu" class="input">
+                                <input type="text" name="email" id="email" value="<?php echo $partnerData['email'];?>" class="input" style="color: black"> 
                             </div>
                             <div class="user-account-details-input-container">
                                 <label for="reg_no" style="font-size: 20px;">Reg. number</label>
-                                <input type="text" name="reg_no" id="reg_no" placeholder="40103315276" class="input">
+                                <input type="text" name="reg_no" id="reg_no" value="<?php echo $partnerData['reg_no'];?>" class="input" style="color: black">
                             </div>
                         </div>     
                     </div>
@@ -103,11 +113,11 @@
                     <div class="user-bank-details">
                         <div class="user-bank-details-input">
                             <label for="bank_account">Bank account</label>
-                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 24px;">
+                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 24px; color: black">
                         </div>
                         <div class="user-bank-details-input">
                             <label for="billing_address">Billing adress</label>
-                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px;"></textarea>
+                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px; color: black"></textarea>
                         </div>
                     </div>
                 </div>
@@ -120,24 +130,24 @@
                     <div class="user-account-settings-inputs">
                         <div class="user-account-settings-input">
                             <label for="email">Email</label>
-                            <input type="text" name="email" id="email" placeholder="your@email.com" class="input">
+                            <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="color: black">
                         </div>
                         <div class="user-account-settings-input">
                             <label for="phone_number">Phone number</label>
-                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input">
+                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="color: black">
                         </div>
                         <div class="user-account-settings-input">
                             <label for="password">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Current password" class="input">
+                            <input type="password" name="password" id="password" placeholder="Current password" class="input" style="color: black">
                         </div>
                         <div class="user-account-settings-password-confirm">
                             <div class="user-account-settings-input">
                                 <label for="new-password">New Password</label>
-                                <input type="password" name="new-password" id="new-password" placeholder="New password" class="input">
+                                <input type="password" name="new-password" id="new-password" placeholder="New password" class="input" style="color: black">
                             </div>
                             <div class="user-account-settings-input">
                                 <label for="confirm-password">Confirm Password</label>
-                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input">
+                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input" style="color: black">
                             </div>
                         </div>
                         <div class="user-account-update">

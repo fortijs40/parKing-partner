@@ -55,11 +55,11 @@
             <div class="login-body">
                 <div class="login-input-container">
                     <label for="email" class="login-label">Email</label>
-                    <input type="text" name="email" id="email" placeholder="example@email.com" required class="input">
+                    <input type="text" name="email" id="email" placeholder="example@email.com" required class="input" style="color: black">
                 </div>
                 <div class="login-input-container">
                     <label for="password" class="login-label">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Your password" required class="input">
+                    <input type="password" name="password" id="password" placeholder="Your password" required class="input" style="color: black">
                 </div>
                 <div>
                     <input type="submit" value="Login" class="btn btn-primary" name="submit">
