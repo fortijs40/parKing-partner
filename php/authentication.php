@@ -63,11 +63,13 @@ try {
 if (password_verify($_password, $_hashed_password)) {
     isAuthorized();
     $_SESSION['logged_user']=$result['email'];
+    $_SESSION['is_logged_in'] = true;
+    $_SESSION['type_id'] = $_type_id;
 
     if ($_type_id == 1) {
-        header("location: index_pers.php");
+        header("location: ../user_account.php");
     } else {
-        header("location: index_comp.php");
+        header("location: ../business_account.php");
     }
 
 } else {
@@ -77,8 +79,7 @@ if (password_verify($_password, $_hashed_password)) {
 $conn = null;
 
 function isAuthorized() {
-    return  $_SESSION['is_loged_in'] = true;
-
+    $_SESSION['is_loged_in'] = true;
 }
 
 ?>

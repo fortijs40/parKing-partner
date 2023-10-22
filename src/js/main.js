@@ -1,6 +1,11 @@
 //For switching between light and dark theme
 const lightThemeBtn = document.getElementById('light-theme-toggle');
 const darkThemeBtn = document.getElementById('dark-theme-toggle');
+const logoutButton = document.getElementById('logout-button');
+logoutButton.addEventListener('click', function() {
+  // Redirect to the logout page or perform your logout action here
+  window.location.href = '../php/logout.php'; // Replace 'logout.php' with the actual URL to your logout script
+});
 
 function setInitialTheme() {
     const theme = getThemeFromCookie();

@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    session_name('session_1');
+    session_start();
+    
+    if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true) {
+        // User is already logged in, redirect to their profile page
+        if($_SESSION['type_id'] == 1){
+            header("Location: user_account.php");
+            exit();
+        } else if($_SESSION['type_id'] == 2){
+            header("Location: business_account.php");
+            exit();
+        }
+    }
+ ?>
 
 <head>
     <title>ParKing</title>
@@ -52,7 +67,7 @@
             </div>
             <div class="login-footer">
                 <p>Don't have an account?</p>
-                <a href="register.html" class="link"> Click here to register</a>
+                <a href="register.php" class="link"> Click here to register</a>
             </div>
         </form>
     </div>

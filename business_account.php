@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    session_name('session_1');
+    session_start();
+
+    if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
+        header("Location: login.html");
+        exit();
+    }
+?>
+
 
 <head>
     <title>ParKing</title>
@@ -21,7 +31,7 @@
                 <div class="header-links-clickable">
                     <a href="index.html" class="link">Homepage</a>
                     <a href="parking_list.php" class="link">Parking List</a>
-                    <a href="user_account.html" class="link">My Account</a>
+                    <a href="business_account.php" class="link">My Account</a>
                     <button class="btn btn-primary" onclick="window.location.href='login.php'">My Parking</button>
                 </div>
                 <div>
@@ -37,6 +47,11 @@
                         <path fill="none" stroke="rgb(var(--primary-color))" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17h14M5 12h14M5 7h14" />
                     </svg>
                 </div>
+                <div>
+                    <svg id="logout-button" xmlns="http://www.w3.org/2000/svg" class="logout-button" width="32" height="32" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h6q.425 0 .713.288T12 4q0 .425-.288.713T11 5H5v14h6q.425 0 .713.288T12 20q0 .425-.288.713T11 21H5Zm12.175-8H10q-.425 0-.713-.288T9 12q0-.425.288-.713T10 11h7.175L15.3 9.125q-.275-.275-.275-.675t.275-.7q.275-.3.7-.313t.725.288L20.3 11.3q.3.3.3.7t-.3.7l-3.575 3.575q-.3.3-.713.288t-.712-.313q-.275-.3-.263-.713t.288-.687l1.85-1.85Z"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </header>
@@ -46,14 +61,13 @@
                 <div class="user-settings-title">
                     <h2>Your Profile</h2>
                 </div>
-                <div class="user-name-and-at">
-                    <img src="src/img/function3.svg" alt="function 3" class="function-img" style="margin-bottom: 50px;">
-                    <h1 class="gradient-text" style="margin-bottom: 25px;" name="fullName">Forty Jones</h1> <!-- Te full name, i guess no db concat, ja var? -->
-                    <h2>@fortyJ</h2>
+                <div class="business-name">
+                    <img src="src/img/function3.svg" alt="function 3" class="function-img" style="margin-bottom: 35px;">
+                    <h1 class="gradient-text" style="margin-bottom: 25px;" name="company_name">SIA "Inter Cars Latvia"</h1>
                 </div>
                 <div class="user-balance-container">
                     <h2>Total Earnings:</h2>
-                    <h2 class="gradient-text" name="earnings"> 6.90€</h2>
+                    <h2 class="gradient-text" name="earnings"> 13.37€</h2>
                 </div>
             </div>
 
@@ -63,30 +77,41 @@
                 </div>
                 <div class="user-account-details">
                     <div class="user-account-details">
-                        <div class="user-account-details-input">
-                            <label for="phone_number">Phone number</label>
-                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="font-size: 24px;">
-                        </div>
-                        <div class="user-account-details-input">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="font-size: 24px;">
-                        </div>
+                        <div class="user-account-details-input-phones">
+                            <div class="user-account-details-input-container">
+                                <label for="phone_number" style="font-size: 20px;">Phone number</label>
+                                <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" >
+                            </div>
+                            <div class="user-account-details-input-container">
+                                <label for="second_phone_no" style="font-size: 20px;">2nd phone No.(optional)</label>
+                                <input type="text" name="second_phone_no" id="second_phone_no" placeholder="+371 26969696" class="input">
+                            </div>
+                        </div>                    
+                        <div class="user-account-details-input-email-reg">
+                            <div class="user-account-details-input-container">
+                                <label for="email" style="font-size: 20px;">Email</label>
+                                <input type="text" name="email" id="email" placeholder="ICLV@intercars.eu" class="input">
+                            </div>
+                            <div class="user-account-details-input-container">
+                                <label for="reg_no" style="font-size: 20px;">Reg. number</label>
+                                <input type="text" name="reg_no" id="reg_no" placeholder="40103315276" class="input">
+                            </div>
+                        </div>     
                     </div>
                 </div>
                 <div class="user-bank-details">
                     <div class="user-bank-details">
                         <div class="user-bank-details-input">
                             <label for="bank_account">Bank account</label>
-                            <input type="text" name="bank_account" id="bank_account" placeholder="LV80*************5001" class="input" style="font-size: 24px;">
+                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 24px;">
                         </div>
                         <div class="user-bank-details-input">
                             <label for="billing_address">Billing adress</label>
-                            <textarea name="billing_address" id="billing_address" placeholder="Maskavas iela 208, Latgales priekšpilsēta, Rīga, Latvija, LV-1019" class="input" style="font-size: 24px;"></textarea>
+                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px;"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-            
             <div class="user-info-right">
                 <div class="user-settings-title">
                     <h2>Account Settings</h2>

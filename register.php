@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    session_name('session_1');
+    session_start();
+    
+    if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true) {
+        // User is already logged in, redirect to their profile page
+        if($_SESSION['type_id'] == 1){
+            header("Location: user_account.php");
+            exit();
+        } else if($_SESSION['type_id'] == 2){
+            header("Location: business_account.php");
+            exit();
+        }
+    }
+?>
 <head>
     <meta charset="UTF-8">
     <title>ParKing</title>
@@ -65,7 +80,7 @@
             </div>
             <div class="to-login">
                 <p>
-                    Already registered? Click <a href="./login.html" class="link">here</a>
+                    Already registered? Click <a href="./login.php" class="link">here</a>
                 </p>
             </div>
         </div>
@@ -78,10 +93,10 @@
                 </p>
             </div>
             <div class="company-person">
-                <a href="register.html" id="company-link"class="active">
+                <a href="register.php" id="company-link"class="active">
                     Company
                 </a>
-                <a href="person_reg.html" id="person-link">
+                <a href="person_reg.php" id="person-link">
                     Person
                 </a>
             </div>
