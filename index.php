@@ -43,7 +43,7 @@
                     <div class="notification-dropdown" id="notification-dropdown">
                         Notification content will be dynamically updated here 
                     </div>-->
-                    <button class="btn btn-primary" onclick="window.location.href='login.html'">Join now!</button>
+                    <button class="btn btn-primary" onclick="window.location.href='login.php'">Join now!</button>
                 </div>
                 <div>
 
