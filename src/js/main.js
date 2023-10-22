@@ -38,10 +38,9 @@ function setThemeCookie(theme) {
 
   // Call the function to set the initial theme
   setInitialTheme();
-  logoutButton.addEventListener('click', function() {
-    // Redirect to the logout page or perform your logout action here
-    window.location.href = '../php/logout.php'; // Replace 'logout.php' with the actual URL to your logout script
-  });
+  function logout() {
+    window.location.href = '../php/logout.php';
+  }
 
 const popupBackgroundObj = document.getElementById("popup-background");
 const mainBodyObj = document.getElementById("main-body");
