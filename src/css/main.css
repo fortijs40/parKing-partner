@@ -7,8 +7,8 @@
 @import "header.css";
 @import "footer.css";
 @import "interactables.css";
-@import "signup.css";
-
+@import "notification.css";
+@import "praking_list.css";
 body {
     background-color: rgba(var(--background-color), 1);
     color: rgba(var(--text-color), 1);
@@ -20,7 +20,7 @@ body {
 }
 
 .hide {
-    display: none !important;
+    display: none;
 }
 
 * {

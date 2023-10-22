@@ -2,17 +2,41 @@
 const lightThemeBtn = document.getElementById('light-theme-toggle');
 const darkThemeBtn = document.getElementById('dark-theme-toggle');
 
-lightThemeBtn.addEventListener('click', () => {
+function setInitialTheme() {
+    const theme = getThemeFromCookie();
+
+    if (theme === 'dark') {
+      darkThemeBtn.classList.remove('hide');
+      lightThemeBtn.classList.add('hide');
+      document.getElementById('theme-style').href = 'src/css/colors-dark.css';
+    }
+  }
+function setThemeCookie(theme) {
+    document.cookie = `theme=${theme}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+  }
+  lightThemeBtn.addEventListener('click', () => {
+    setThemeCookie('dark'); // Set the theme preference in a cookie
     lightThemeBtn.classList.add('hide');
     darkThemeBtn.classList.remove('hide');
     document.getElementById('theme-style').href = 'src/css/colors-dark.css';
-});
-
-darkThemeBtn.addEventListener('click', () => {
+  });
+  darkThemeBtn.addEventListener('click', () => {
+    setThemeCookie('light'); // Set the theme preference in a cookie
     darkThemeBtn.classList.add('hide');
     lightThemeBtn.classList.remove('hide');
     document.getElementById('theme-style').href = 'src/css/colors-light.css';
-});
+  });
+  // Function to retrieve the theme preference from a cookie
+  function getThemeFromCookie() {
+    const cookieValue = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('theme='))
+      .split('=')[1];
+    return cookieValue || 'light'; // Default to 'light' if the cookie is not set.
+  }
+
+  // Call the function to set the initial theme
+  setInitialTheme();
 
 const popupBackgroundObj = document.getElementById("popup-background");
 const mainBodyObj = document.getElementById("main-body");
