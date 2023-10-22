@@ -13,6 +13,7 @@ body {
     border: 2px solid #000;
     margin: 50px 10px 10px;
     padding: 20px;
+    background-color: rgb(var(--secondary-color));
 }
 
 .sign-up-right {
@@ -22,6 +23,7 @@ body {
     margin: 50px 10px 10px;
     padding: 20px;
     justify-content: space-between;
+    background-color: rgb(var(--secondary-color));
 }
 
 .area-left {
@@ -49,15 +51,23 @@ body {
 }
 
 .company-person a.active {
-    background-color: #FBCF61;
+    background-color: rgb(var(--danger-color));
     color: #000;
     font-weight: bold;
 }
-
+.company-person a:hover {
+    background-color: rgb(var(--danger-color));
+    /* Add any other styles you want for the hover effect */
+}
 .company-person a {
+    display: inline-block;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 25px; /* This value makes it round */
+    background-color: rgb(var(--secondary-color-darker)); /* Set your desired background color */
+    color: rgb(var(--text-color)); /* Text color */
     text-decoration: none;
-    padding: 5px 10px;
-    margin: 5px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .to-login {
