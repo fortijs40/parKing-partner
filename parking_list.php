@@ -1,3 +1,23 @@
+<?php
+require_once 'connection.php';
+
+try {
+    // Connect to the database
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Fetch data from the "parkingspots" table
+    $stmt = $conn->prepare("SELECT * FROM parkingspots");
+    $stmt->execute();
+    $parkingData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Close the database connection
+    $conn = null;
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,22 +78,30 @@
             </select>
         </div>
         <div class="parking-list">
-        
+         
         </div>
     </div> -->
     <div class="container2">
         <div class="parking-list">
-            <?php
-            // Loop through the retrieved data and display it
-            foreach ($parkingData as $parkingSpot) {
-                echo "<div class='parking-space'>";
-                echo "<h2>{$parkingSpot['spot_name']}</h2>";
-                echo "<p>Spot Type: {$parkingSpot['spot_type']}</p>";
-                echo "<p>Spot Address: {$parkingSpot['spot_address']}</p>";
-                // Add more fields as needed
-                echo "</div>";
+        <?php
+        foreach ($parkingData as $parkingSpot) {
+            echo "<div class='parking-space'>";
+            echo "<h2>{$parkingSpot['spot_name']}</h2>";
+            echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
+            echo "<p>Address: {$parkingSpot['spot_address']}</p>";
+            echo "<div class='status'>Free Spots: {$parkingSpot['max_spots_count']}</div>";
+            echo "<div class='button-container'>";
+            
+            // Check if the user is logged in and is the creator of this spot
+            if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
+                echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
             }
-            ?>
+            echo "<button class='edit-button' onclick='viewMore({$parkingSpot['id']})'>View More</button>";
+            
+            echo "</div>";
+            echo "</div>";
+        }
+        ?>
         </div>
     </div>
 
@@ -86,4 +114,14 @@
 <script src="src/js/main.js"></script>
 <script src="src/js/notification.js"></script>
 <script src="src/js/parking_list.js"></script>
+<script>
+        // JavaScript functions for handling edit and view more buttons
+        function editParkingSpot(spotId) {
+            // Implement your edit logic here or redirect to an edit page with the spotId
+        }
+
+        function viewMore(spotId) {
+            // Implement your view more logic here or redirect to a details page with the spotId
+        }
+    </script>
 </html>

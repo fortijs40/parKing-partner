@@ -119,8 +119,8 @@
                         <input type="text" id="phone" name="phone_number" placeholder="Company phone number" required>
                     </div>
                     <div>
-                        <label for="second_phone_no">Second phone {optional}</label>
-                        <input type="text" id="second_phone_no" name="second_phone_no" placeholder="Second phone number">
+                        <label for="sec-phone">Second phone {optional}</label>
+                        <input type="text" id="sec-phone" name="sec_phone" placeholder="Second phone number">
                     </div>
                     <div>
                         <label for="password">Password</label>
