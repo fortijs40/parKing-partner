@@ -41,6 +41,7 @@ try {
     <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="src/img/favicon/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./src/css/praking_list.css">
 </head>
 <body>
     <header class="header-container" id="header">

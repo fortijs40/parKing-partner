@@ -60,11 +60,11 @@ try {
 
 require_once 'connection.php';
 
-
-$stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_type, spot_name, spot_address, start_time, end_time,
-                             price, max_spots_count, is_premium, is_disabled, add_info, date_created, last_update)
-                            VALUES (:partner_id, :spot_type, :spot_name, :spot_address, :start_time, :end_time,
-                             :price, :max_spots_count, :is_premium, :is_disabled, :add_info");
+//Izņēmu šitos -> date_created, last_update
+$stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_name, spot_address, start_time, end_time,
+                             price, max_spot_count, is_premium, is_disabled, add_info)
+                            VALUES (:partner_id, :spot_name, :spot_address, :start_time, :end_time,
+                             :price, :max_spot_count, :is_premium, :is_disabled, :add_info)");
 
 $stmt->bindParam(':partner_id', $_partner_id);
 $stmt->bindParam(':spot_name', $_spot_name);
@@ -79,10 +79,22 @@ $stmt->bindParam(':add_info', $_add_info);
 //  $stmt->bindParam(':date_created', $_date_created, PDO::PARAM_STR);
 //  $stmt->bindParam(':last_update', $_last_update, PDO::PARAM_STR);
 
+echo ':partner_id = ' . $_partner_id . '<br>';
+echo ':spot_name = ' . $_spot_name . '<br>';
+echo ':spot_address = ' . $_spot_address . '<br>';
+echo ':start_time = ' . $_start_time . '<br>';
+echo ':end_time = ' . $_end_time . '<br>';
+echo ':price = ' . $_price . '<br>';
+echo ':max_spot_count = ' . $_max_spot_count . '<br>';
+echo ':is_premium = ' . $_is_premium . '<br>';
+echo ':is_disabled = ' . $_is_disabled . '<br>';
+echo ':add_info = ' . $_add_info . '<br>';
+
+
 
 $stmt->execute();
 $_SESSION['return_message'] = 'New record created successfully.';
-header('Location: ../parking_list.php');
+
 
 } catch(PDOException $e) {
 
@@ -90,7 +102,7 @@ echo 'Error: ' . $e->getMessage();
 $_SESSION['return_message'] = 'New record was not created.';
 //echo $stmt->queryString;
 echo 'New record was not created.';
-header('Location: ../parking_list.php');
+
 }
 
 $_last_id = NULL;
@@ -139,5 +151,8 @@ try {
 }
 
 echo '<br>';
+
+header('Location: ../parking_list.php');
+exit();
 
 ?>
