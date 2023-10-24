@@ -95,7 +95,6 @@ try {
     </div> -->
     <div class="parking-list-bar">
         <button id="add-parking-spot-btn" class="btn btn-primary" onclick=openForm()>Add a Parking Spot</button>
-
     </div>
     <div class="container2">
         <div id="register-parking" class="modal">
@@ -138,25 +137,25 @@ try {
             </div>
         </div>
         <div class="parking-list">
-        <?php
-        foreach ($parkingData as $parkingSpot) {
-            echo "<div class='parking-space'>";
-            echo "<h2>{$parkingSpot['spot_name']}</h2>";
-            echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
-            echo "<p>Address: {$parkingSpot['spot_address']}</p>";
-            echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
-            echo "<div class='button-container'>";
-            
-            // Check if the user is logged in and is the creator of this spot
-            if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
-                echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
+            <?php
+            foreach ($parkingData as $parkingSpot) {
+                echo "<div class='parking-space'>";
+                echo "<h2>{$parkingSpot['spot_name']}</h2>";
+                echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
+                echo "<p>Address: {$parkingSpot['spot_address']}</p>";
+                echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
+                echo "<div class='button-container'>";
+                
+                // Check if the user is logged in and is the creator of this spot
+                if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
+                    echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
+                }
+                echo "<button class='edit-button' onclick='viewMore({$parkingSpot['spot_id']})'>View More</button>";
+                
+                echo "</div>";
+                echo "</div>";
             }
-            echo "<button class='edit-button' onclick='viewMore({$parkingSpot['spot_id']})'>View More</button>";
-            
-            echo "</div>";
-            echo "</div>";
-        }
-        ?>
+            ?>
         </div>
     </div>
 

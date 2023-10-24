@@ -72,13 +72,29 @@
     align-items: center; /* To horizontally center the content */
     padding: 20px; /* Adjust this value to control the space around container2 */
     background-color: rgb(var(--background-color));
-    height: 740px;
+    height: 64vh;
 }
 .parking-list-bar{
     margin-top: 70px;
 
 }
-
+.parking-list {
+    overflow: auto; /* Ensure that the container is scrollable */
+    height: 400px;
+}
+  
+  .parking-list::-webkit-scrollbar {
+    width: 12px; /* Set the width of the scrollbar */
+  }
+.parking-list::-webkit-scrollbar-track {
+    background-color: rgb(201, 198, 198);
+    border-radius: 6px; /* Round the corners of the scrollbar track */
+  }
+  
+  .parking-list::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--primary-color));
+    border-radius: 6px; /* Round the corners of the thumb */
+  }
 .parking-space {
     width: 350px;
     margin: 10px;
@@ -192,3 +208,4 @@
     text-decoration: none;
     cursor: pointer;
   }
+ 
