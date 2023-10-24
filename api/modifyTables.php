@@ -34,7 +34,7 @@ function updateReservations($data) {
     global $conn;
     try {
         $stmt = $conn->prepare("INSERT INTO reservations (partner_id, client_id, spot_id, start_date, end_date, start_time, end_time, parkingspot, payment_sum, is_read) 
-                               VALUES (:partner_id, :client_id, :spot_id, :start_date, :end_date, :start_time, :end_time, :parkingspot, :payment_sum, :is_read)");
+                               VALUES (:partner_id, :client_id, :spot_id, :start_date, :end_date, :start_time, :end_time, :parkingspot, :payment_sum, 0)");
 
         $stmt->bindParam(':partner_id', $data['partner_id']);
         $stmt->bindParam(':client_id', $data['client_id']);
@@ -45,7 +45,6 @@ function updateReservations($data) {
         $stmt->bindParam(':end_time', $data['end_time']);
         $stmt->bindParam(':parkingspot', $data['parkingspot']);
         $stmt->bindParam(':payment_sum', $data['payment_sum']);
-        $stmt->bindParam(':is_read', $data['is_read']);
 
         $stmt->execute();
         echo "Reservation data inserted successfully.<br>";
@@ -58,7 +57,7 @@ function updateReviews($data) {
     global $conn;
     try {
         $stmt = $conn->prepare("INSERT INTO reviews (partner_id, client_id, spot_id, rev_description, posted_time, rating, title, is_read) 
-                               VALUES (:partner_id, :client_id, :spot_id, :rev_description, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i'), :rating, :title, :is_read)");
+                               VALUES (:partner_id, :client_id, :spot_id, :rev_description, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i'), :rating, :title, 0)");
 
         $stmt->bindParam(':partner_id', $data['partner_id']);
         $stmt->bindParam(':client_id', $data['client_id']);
@@ -66,7 +65,6 @@ function updateReviews($data) {
         $stmt->bindParam(':rev_description', $data['rev_description']);
         $stmt->bindParam(':rating', $data['rating']);
         $stmt->bindParam(':title', $data['title']);
-        $stmt->bindParam(':is_read', $data['is_read']);
 
         $stmt->execute();
         echo "Review data inserted successfully.<br>";
@@ -79,13 +77,12 @@ function updateReports($data) {
     global $conn;
     try {
         $stmt = $conn->prepare("INSERT INTO reports (partner_id, client_id, spot_id, rep_description, is_read) 
-                               VALUES (:partner_id, :client_id, :spot_id, :rep_description, :is_read)");
+                               VALUES (:partner_id, :client_id, :spot_id, :rep_description, 0)");
 
         $stmt->bindParam(':partner_id', $data['partner_id']);
         $stmt->bindParam(':client_id', $data['client_id']);
         $stmt->bindParam(':spot_id', $data['spot_id']);
         $stmt->bindParam(':rep_description', $data['rep_description']);
-        $stmt->bindParam(':is_read', $data['is_read']);
 
         $stmt->execute();
         echo "Report data inserted successfully.<br>";

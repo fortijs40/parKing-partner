@@ -78,6 +78,7 @@ if (password_verify($_password, $_hashed_password)) {
 
         $_SESSION['person_id'] = $user_id['person_id'];
         header("location: ../user_account.php");
+        exit();
     } else {
         require_once 'connection.php';
         $stmt = $conn->prepare("SELECT company_id FROM companies WHERE email = :_email");
@@ -91,6 +92,7 @@ if (password_verify($_password, $_hashed_password)) {
 
         $_SESSION['company_id'] = $user_id['company_id'];
         header("location: ../business_account.php");
+        exit();
     }
 
 } else {

@@ -74,11 +74,16 @@ $stmt->bindParam(':add_info', $_add_info);
 
 $stmt->execute();
 
-echo 'New record created successfully.';
+$_SESSION['return_message'] = 'New record created successfully.';
+header('Location: ../parking_list.php');
+exit();
 
 } catch(PDOException $e) {
 
 echo 'Error: ' . $e->getMessage();
+$_SESSION['return_message'] = 'New record was not created.';
+header('Location: ../parking_list.php');
+
 echo 'New record was not created.';
 }
 

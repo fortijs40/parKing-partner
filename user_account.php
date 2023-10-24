@@ -39,7 +39,6 @@
             <img src="src/img/logo.png" alt="ParKing" class="logo">
             <div class="header-links">
                 <div class="header-links-clickable">
-                    <a href="index.html" class="link">Homepage</a>
                     <a href="parking_list.php" class="link">Parking List</a>
                     <a href="user_account.php" class="link">My Account</a>
                 </div>
