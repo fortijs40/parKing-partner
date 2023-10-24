@@ -151,5 +151,5 @@ try {
 echo '<br>';
 
 
-header('./login.html');
+header('./login.php');
 exit;
