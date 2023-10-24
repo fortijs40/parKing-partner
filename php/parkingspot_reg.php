@@ -41,12 +41,17 @@ if (isset($_POST['is_premium'])) {
 }
 
 if (isset($_POST['is_disabled'])) {
-  $_is_disabled=test_input($_POST['is_disabled']);
+  $_is_disabled=filter_var($_POST['is_disabled'], FILTER_VALIDATE_BOOLEAN);
+} else {
+    $_is_disabled=0;
 }
 
 if (isset($_POST['add_info'])) {
   $_add_info=test_input($_POST['add_info']);
 }
+
+//$_date_created = new DateTime();
+//$_last_update = new DateTime();
 
 function test_input($_data) {
   $_data = trim((string)$_data);
@@ -61,7 +66,7 @@ try {
   require_once 'connection.php';
 
   $stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_name, spot_address, start_time, end_time,
-                             price, max_spots_count, is_premium, is_disabled, add_info)
+                             price, max_spots_count, is_premium, is_disabled, add_info, date_created, last_update)
                             VALUES (:partner_id, :spot_type, :spot_name, :spot_address, :start_time, :end_time,
                              :price, :max_spots_count, :is_premium, :is_disabled, :add_info");
 
@@ -75,6 +80,8 @@ try {
   $stmt->bindParam(':is_premium', $_is_premium);
   $stmt->bindParam(':is_disabled', $_is_disabled);
   $stmt->bindParam(':add_info', $_add_info);
+//  $stmt->bindParam(':date_created', $_date_created, PDO::PARAM_STR);
+//  $stmt->bindParam(':last_update', $_last_update, PDO::PARAM_STR);
 
   $stmt->execute();
 
@@ -110,7 +117,7 @@ try {
     $ch = curl_init($apiUrl);
 
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)); // Assuming you want to send JSON data
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
