@@ -51,6 +51,9 @@ if (empty($_POST['password_confirmed'])) {
     $_password_confirmed=$_POST['password_confirmed'];
 }
 
+//$_date_created = new DateTime();
+//$_last_update = new DateTime();
+
 $_type_id = 2;
 
 $_last_id = NULL;
@@ -99,7 +102,50 @@ try {
     echo 'New record was not created.';
 }
 
-$conn = null;
+$_last_id = NULL;
+
+try {
+
+    require_once 'connection.php';
+
+    $_last_id = $conn->lastInsertId();
+
+    $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :last_insert");
+
+    $stmt->bindParam(':last_insert', $_last_id);
+
+    $stmt->execute();
+
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (count($data) > 0) {
+
+        $apiUrl = 'http://your_spring_boot_api_endpoint';
+
+        $ch = curl_init($apiUrl);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            echo 'cURL Error: ' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        echo $response;
+
+    } else {
+        echo "No data found";
+    }
+
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
 
 echo '<br>';
 
