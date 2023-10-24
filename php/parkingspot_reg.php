@@ -3,13 +3,9 @@ session_name('session_1');
 session_start();
 global $conn;
 
-  if (isset($_SESSION['logged_user'])) {
-    $_partner_id=$_SESSION['logged_user'];
-  } 
-
-  if (isset($_POST['spot_type'])) {
-    $_spot_type=test_input($_POST['spot_type']);
-  } 
+  if (isset($_SESSION['partner_id'])) {
+    $_partner_id=$_SESSION['partner_id'];
+  }
 
   if (isset($_POST['spot_name'])) {
     $_spot_name=test_input($_POST['spot_name']);
@@ -29,15 +25,21 @@ global $conn;
 
   if (isset($_POST['price'])) {
     $_price=test_input($_POST['price']);
-  } 
-
+  }
+  if(isset($_POST['max_spot_count'])){
+    $_max_spot_count=test_input($_POST['max_spot_count']);
+  }
   if (isset($_POST['is_premium'])) {
-    $_is_premium=test_input($_POST['is_premium']);
-  } 
+    $_is_premium=1; //1 means is set
+  }else{
+    $_is_premium=0; //0 means is not set
+  }
 
   if (isset($_POST['is_disabled'])) {
-    $_is_disabled=test_input($_POST['is_disabled']);
-  } 
+    $_is_disabled=1; //1 means is set
+  }else{
+    $_is_disabled=0; // 0 means is not set
+  }
 
   if (isset($_POST['add_info'])) {
     $_add_info=test_input($_POST['add_info']);
@@ -55,40 +57,49 @@ require_once 'connection.php';
 
 try {
 
-$stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_type, spot_name, spot_address, start_time, end_time,
-                             price, max_spots_count, is_premium, is_disabled, add_info)
-                            VALUES (:partner_id, :spot_type, :spot_name, :spot_address, :start_time, :end_time,
-                             :price, :max_spots_count, :is_premium, :is_disabled, :add_info");
+$stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_name, spot_address, start_time, end_time,
+                             price, max_spot_count, is_premium, is_disabled, add_info) 
+                             VALUES (:partner_id, :spot_name, :spot_address, :start_time, :end_time,
+                              :price, :max_spot_count, :is_premium, :is_disabled, :add_info)");
+
 
 $stmt->bindParam(':partner_id', $_partner_id);
-$stmt->bindParam(':spot_type', $_spot_type);
 $stmt->bindParam(':spot_name', $_spot_name);
 $stmt->bindParam(':spot_address', $_spot_address);
 $stmt->bindParam(':start_time', $_start_time);
 $stmt->bindParam(':end_time', $_end_time);
 $stmt->bindParam(':price', $_price);
-$stmt->bindParam(':max_spots_count', $_max_spots_count);
+$stmt->bindParam(':max_spot_count', $_max_spot_count);
 $stmt->bindParam(':is_premium', $_is_premium);
 $stmt->bindParam(':is_disabled', $_is_disabled);
 $stmt->bindParam(':add_info', $_add_info);
+/*this is just for debugging
+echo "_partner_id: " . $_partner_id . "<br>";
+echo "_spot_name: " . $_spot_name . "<br>";
+echo "_spot_address: " . $_spot_address . "<br>";
+echo "_start_time: " . $_start_time . "<br>";
+echo "_end_time: " . $_end_time . "<br>";
+echo "_price: " . $_price . "<br>";
+echo "_max_spots_count: " . $_max_spot_count . "<br>";
+echo "_is_premium: " . $_is_premium . "<br>";
+echo "_is_disabled: " . $_is_disabled . "<br>";
+echo "_add_info: " . $_add_info . "<br>";
+ */
 
 $stmt->execute();
-
 $_SESSION['return_message'] = 'New record created successfully.';
 header('Location: ../parking_list.php');
-exit();
 
 } catch(PDOException $e) {
 
 echo 'Error: ' . $e->getMessage();
 $_SESSION['return_message'] = 'New record was not created.';
-header('Location: ../parking_list.php');
-
+//echo $stmt->queryString;
 echo 'New record was not created.';
+header('Location: ../parking_list.php');
 }
 
 $conn = null;
-
-echo '<br>';             
+           
           
 ?>       

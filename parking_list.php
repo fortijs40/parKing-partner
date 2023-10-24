@@ -15,7 +15,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Fetch data from the "parkingspots" table
-    $stmt = $conn->prepare("SELECT * FROM parkingspots");
+    $stmt = $conn->prepare("SELECT * FROM parkingspots where partner_id = $_SESSION[partner_id]");
     $stmt->execute();
     $parkingData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,80 +33,14 @@ try {
     <title>ParKing</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="src/css/main.css">
+    <!---
+    ---> <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/colors-light.css" id="theme-style">
     <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="src/img/favicon/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 8;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        top: 100px;
-      }
-      .modal-content {
-        margin: 50px auto;
-        width: 60%;
-      }
-      h1 {
-        margin: 0 0 20px;
-        font-weight: 400;
-        color: rgb(var(--primary-color));
-      }
-      span {
-        color: #666;
-        display: block;
-        padding: 0 0 5px;
-      }
-      form {
-        padding: 25px;
-        margin: 25px;
-        box-shadow: 0 2px 5px #f5f5f5;
-        background: #eee;
-      }
-      input,
-      textarea {
-        width: 90%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #1c87c9;
-        outline: none;
-      }
-      .contact-form button {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        background: #1c87c9;
-        font-size: 16px;
-        font-weight: 400;
-        color: #fff;
-      }
-      button:hover {
-        background: #2371a0;
-      }
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-      }
-      .close:hover,
-      .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-      }
-    </style>
 </head>
 <body>
     <header class="header-container" id="header">
@@ -138,6 +72,11 @@ try {
                 <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="hide-hamburger" width="42" height="42" viewBox="0 0 24 24"><path fill="none" stroke="rgb(var(--primary-color))" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17h14M5 12h14M5 7h14"/></svg>
                 </div>
+                <div>
+                    <svg id="logout-button" xmlns="http://www.w3.org/2000/svg" class="logout-button" onclick="logout()" width="32" height="32" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h6q.425 0 .713.288T12 4q0 .425-.288.713T11 5H5v14h6q.425 0 .713.288T12 20q0 .425-.288.713T11 21H5Zm12.175-8H10q-.425 0-.713-.288T9 12q0-.425.288-.713T10 11h7.175L15.3 9.125q-.275-.275-.275-.675t.275-.7q.275-.3.7-.313t.725.288L20.3 11.3q.3.3.3.7t-.3.7l-3.575 3.575q-.3.3-.713.288t-.712-.313q-.275-.3-.263-.713t.288-.687l1.85-1.85Z"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </header>
@@ -154,65 +93,65 @@ try {
          
         </div>
     </div> -->
-    
-    <div class="container2">
-    <div id="register-parking" class="modal">
-        <div class="modal-content">
-            <div class="parking-form">
-                <span class="close" id="close-modal" onclick="closeForm()">&times;</span>
-                <form action="parkingspot_reg.php" method="post">
-                    <h1>Register a Parking Spot</h1>
-                    <label for="spot_type">Spot Type:</label>
-                    <input type="text" name="spot_type" required><br>
+    <div class="parking-list-bar">
+        <button id="add-parking-spot-btn" class="btn btn-primary" onclick=openForm()>Add a Parking Spot</button>
 
-                    <label for="spot_name">Spot Name:</label>
-                    <input type="text" name="spot_name" required><br>
-
-                    <label for="spot_address">Spot Address:</label>
-                    <input type="text" name="spot_address" required><br>
-
-                    <label for="start_time">Start Time:</label>
-                    <input type="time" name="start_time" pattern="[0-9]{2}:[0-9]{2}"required><br>
-
-                    <label for="end_time">End Time:</label>
-                    <input type="time" name="end_time" step="3600" value="22:00" required><br>
-
-                    <label for="price">Price:</label>
-                    <input type="text" name="price" required><br>
-
-                    <label for="is_premium">Is Premium:</label>
-                    <input type="checkbox" name="is_premium"><br>
-
-                    <label for="is_disabled">Is Disabled:</label>
-                    <input type="checkbox" name="is_disabled"><br>
-
-                    <label for="add_info">Additional Information:</label>
-                    <textarea name="add_info"></textarea><br>
-
-                    <input type="submit" value="Register">
-                </form>
-            </div>
-        </div>
     </div>
-        <div class="parking-list-bar">
-            <button id="add-parking-spot-btn" class="btn btn-primary" onclick=openForm()>Add a Parking Spot</button>
+    <div class="container2">
+        <div id="register-parking" class="modal">
+            <div class="modal-content">
+                <div class="parking-form">
+                    <span class="close" id="close-modal" onclick="closeForm()">&times;</span>
+                    <form action="./php/parkingspot_reg.php" method="post">
+                        <h1>Register a Parking Spot</h1>
+
+                        <label for="spot_name">Spot Name:</label>
+                        <input type="text" name="spot_name" required><br>
+
+                        <label for="spot_address">Spot Address:</label>
+                        <input type="text" name="spot_address" required><br>
+
+                        <label for="start_time">Start Time:</label>
+                        <input type="time" name="start_time" value="00:00"><br>
+
+                        <label for="end_time">End Time </label>
+                        <input type="time" name="end_time"value="00:00"><br>
+
+                        <label for="price">Price:</label>
+                        <input type="text" name="price" required><br>
+
+                        <label for="max_spot_count">Spot amount:</label>
+                        <input type="number" min="1" step="1"name="max_spot_count" value="1"required><br>
+
+                        <label for="is_premium">Is Premium:</label>
+                        <input type="checkbox" name="is_premium"><br>
+
+                        <label for="is_disabled">Is Disabled:</label>
+                        <input type="checkbox" name="is_disabled"><br>
+
+                        <label for="add_info">Additional Information:</label>
+                        <textarea name="add_info"></textarea><br>
+
+                        <input id="sumbitButton"type="submit" value="Register">
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="parking-list">
         <?php
         foreach ($parkingData as $parkingSpot) {
             echo "<div class='parking-space'>";
-            echo "<h1> lohs </h1>";
             echo "<h2>{$parkingSpot['spot_name']}</h2>";
             echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
             echo "<p>Address: {$parkingSpot['spot_address']}</p>";
-            echo "<div class='status'>Free Spots: {$parkingSpot['max_spots_count']}</div>";
+            echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
             echo "<div class='button-container'>";
             
             // Check if the user is logged in and is the creator of this spot
             if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
                 echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
             }
-            echo "<button class='edit-button' onclick='viewMore({$parkingSpot['id']})'>View More</button>";
+            echo "<button class='edit-button' onclick='viewMore({$parkingSpot['spot_id']})'>View More</button>";
             
             echo "</div>";
             echo "</div>";
@@ -229,7 +168,7 @@ try {
 </body>
 <script src="src/js/main.js"></script>
 <script src="src/js/notification.js"></script>
-<script src="src/js/parking_list.js"></script>
+<!-- --><script src="src/js/parking_list.js"></script>
 <script> 
     // Get references to elements
     function openForm() {
