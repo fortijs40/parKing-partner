@@ -7,10 +7,6 @@ if (isset($_SESSION['logged_user'])) {
   $_partner_id=$_SESSION['logged_user'];
 }
 
-if (isset($_POST['spot_type'])) {
-  $_spot_type=test_input($_POST['spot_type']);
-}
-
 if (isset($_POST['spot_name'])) {
   $_spot_name=test_input($_POST['spot_name']);
 }
@@ -29,6 +25,10 @@ if (isset($_POST['end_time'])) {
 
 if (isset($_POST['price'])) {
   $_price=test_input($_POST['price']);
+}
+
+if (isset($_POST['max_spots_count'])) {
+    $_max_spots_count=test_input($_POST['max_spots_count']);
 }
 
 // if (isset($_POST['is_premium'])) {
@@ -60,13 +60,12 @@ try {
 
   require_once 'connection.php';
 
-  $stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_type, spot_name, spot_address, start_time, end_time,
+  $stmt = $conn->prepare("INSERT INTO parkingspots(partner_id, spot_name, spot_address, start_time, end_time,
                              price, max_spots_count, is_premium, is_disabled, add_info)
                             VALUES (:partner_id, :spot_type, :spot_name, :spot_address, :start_time, :end_time,
                              :price, :max_spots_count, :is_premium, :is_disabled, :add_info");
 
   $stmt->bindParam(':partner_id', $_partner_id);
-  $stmt->bindParam(':spot_type', $_spot_type);
   $stmt->bindParam(':spot_name', $_spot_name);
   $stmt->bindParam(':spot_address', $_spot_address);
   $stmt->bindParam(':start_time', $_start_time);
