@@ -48,7 +48,7 @@
         </div>
     </header>
 
-    <div class="container2">
+    <!-- <div class="container2">
         <div class="filter-container">
             <label for="filterIsFree">Filter by Availability:</label>
             <select id="filterIsFree">
@@ -58,10 +58,24 @@
             </select>
         </div>
         <div class="parking-list">
-            <!-- Parking list content will be generated dynamically using JavaScript -->
+        
+        </div>
+    </div> -->
+    <div class="container2">
+        <div class="parking-list">
+            <?php
+            // Loop through the retrieved data and display it
+            foreach ($parkingData as $parkingSpot) {
+                echo "<div class='parking-space'>";
+                echo "<h2>{$parkingSpot['spot_name']}</h2>";
+                echo "<p>Spot Type: {$parkingSpot['spot_type']}</p>";
+                echo "<p>Spot Address: {$parkingSpot['spot_address']}</p>";
+                // Add more fields as needed
+                echo "</div>";
+            }
+            ?>
         </div>
     </div>
-
 
 
     <div class="footer">

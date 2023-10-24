@@ -10,7 +10,6 @@
             header("Location: login.php");
             exit();
         }
-
         $companyId = $_SESSION['company_id'];
 
         $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :company_id");
@@ -40,7 +39,6 @@
             <img src="src/img/logo.png" alt="ParKing" class="logo">
             <div class="header-links">
                 <div class="header-links-clickable">
-                    <a href="index.html" class="link">Homepage</a>
                     <a href="parking_list.php" class="link">Parking List</a>
                     <a href="business_account.php" class="link">My Account</a>
                 </div>

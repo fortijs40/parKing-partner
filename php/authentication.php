@@ -15,6 +15,7 @@ if(isset($_POST['submit'])){
     $_password = NULL;
     $_hashed_password = NULL;
     $_type_id = NULL;
+    $_partner_id = NULL;
 
     if (isset($_POST['email'])) {
         $_email = test_input($_POST['email']);
@@ -49,6 +50,7 @@ try {
 
         $_hashed_password = $result['hashed_password'];
         $_type_id = $result['type_id'];
+        $_partner_id = $result['partner_id'];
 
     } else {
         echo '<div class="container">';
@@ -62,6 +64,7 @@ try {
 
 if (password_verify($_password, $_hashed_password)) {
     $_SESSION['logged_user']=$result['email'];
+    $_SESSION['partner_id']=$result['partner_id'];
     $_SESSION['is_logged_in'] = true;
     $_SESSION['type_id'] = $_type_id;
 
@@ -78,6 +81,7 @@ if (password_verify($_password, $_hashed_password)) {
 
         $_SESSION['person_id'] = $user_id['person_id'];
         header("location: ../user_account.php");
+        exit();
     } else {
         require_once 'connection.php';
         $stmt = $conn->prepare("SELECT company_id FROM companies WHERE email = :_email");
@@ -91,6 +95,7 @@ if (password_verify($_password, $_hashed_password)) {
 
         $_SESSION['company_id'] = $user_id['company_id'];
         header("location: ../business_account.php");
+        exit();
     }
 
 } else {
