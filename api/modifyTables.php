@@ -33,15 +33,13 @@ function processPayload($payload) {
 function updateReservations($data) {
     global $conn;
     try {
-        $stmt = $conn->prepare("INSERT INTO reservations (partner_id, client_id, spot_id, start_date, end_date, start_time, end_time, parkingspot, payment_sum, is_read) 
-                               VALUES (:partner_id, :client_id, :spot_id, :start_date, :end_date, :start_time, :end_time, :parkingspot, :payment_sum, 0)");
+        $spot_id = $data['spot_id'];
+        $partner_id = getPartnerIdFromSpotId($spot_id);
+        $stmt = $conn->prepare("INSERT INTO reservations (partner_id, spot_id, end_time, parkingspot, payment_sum, is_read) 
+                               VALUES (:partner_id, :spot_id, :end_time, :parkingspot, :payment_sum, 0)");
 
-        $stmt->bindParam(':partner_id', $data['partner_id']);
-        $stmt->bindParam(':client_id', $data['client_id']);
-        $stmt->bindParam(':spot_id', $data['spot_id']);
-        $stmt->bindParam(':start_date', $data['start_date']);
-        $stmt->bindParam(':end_date', $data['end_date']);
-        $stmt->bindParam(':start_time', $data['start_time']);
+        $stmt->bindParam(':partner_id', $partner_id);
+        $stmt->bindParam(':spot_id', $spot_id);
         $stmt->bindParam(':end_time', $data['end_time']);
         $stmt->bindParam(':parkingspot', $data['parkingspot']);
         $stmt->bindParam(':payment_sum', $data['payment_sum']);
@@ -56,12 +54,13 @@ function updateReservations($data) {
 function updateReviews($data) {
     global $conn;
     try {
-        $stmt = $conn->prepare("INSERT INTO reviews (partner_id, client_id, spot_id, rev_description, posted_time, rating, title, is_read) 
-                               VALUES (:partner_id, :client_id, :spot_id, :rev_description, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i'), :rating, :title, 0)");
+        $spot_id = $data['spot_id'];
+        $partner_id = getPartnerIdFromSpotId($spot_id);
+        $stmt = $conn->prepare("INSERT INTO reviews (partner_id, spot_id, rev_description, posted_time, rating, title, is_read) 
+                               VALUES (:partner_id, :spot_id, :rev_description, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i'), :rating, :title, 0)");
 
-        $stmt->bindParam(':partner_id', $data['partner_id']);
-        $stmt->bindParam(':client_id', $data['client_id']);
-        $stmt->bindParam(':spot_id', $data['spot_id']);
+        $stmt->bindParam(':partner_id', $partner_id);
+        $stmt->bindParam(':spot_id', $spot_id);
         $stmt->bindParam(':rev_description', $data['rev_description']);
         $stmt->bindParam(':rating', $data['rating']);
         $stmt->bindParam(':title', $data['title']);
@@ -76,12 +75,13 @@ function updateReviews($data) {
 function updateReports($data) {
     global $conn;
     try {
-        $stmt = $conn->prepare("INSERT INTO reports (partner_id, client_id, spot_id, rep_description, is_read) 
-                               VALUES (:partner_id, :client_id, :spot_id, :rep_description, 0)");
+        $spot_id = $data['spot_id'];
+        $partner_id = getPartnerIdFromSpotId($spot_id);
+        $stmt = $conn->prepare("INSERT INTO reports (partner_id, spot_id, rep_description, is_read) 
+                               VALUES (:partner_id, :spot_id, :rep_description, 0)");
 
-        $stmt->bindParam(':partner_id', $data['partner_id']);
-        $stmt->bindParam(':client_id', $data['client_id']);
-        $stmt->bindParam(':spot_id', $data['spot_id']);
+        $stmt->bindParam(':partner_id', $partner_id);
+        $stmt->bindParam(':spot_id', $spot_id);
         $stmt->bindParam(':rep_description', $data['rep_description']);
 
         $stmt->execute();
@@ -90,5 +90,20 @@ function updateReports($data) {
         echo "Error inserting report data: " . $e->getMessage();
     }
 }
-
+function getPartnerIdFromSpotId($spot_id) {
+    global $conn;
+    $partner_id = null;
+    try {
+        $stmt = $conn->prepare("SELECT partner_id FROM parkingspots WHERE spot_id = :spot_id");
+        $stmt->bindParam(':spot_id', $spot_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $partner_id = $result['partner_id'];
+        }
+    } catch(PDOException $e) {
+        echo "Error retrieving partner_id: " . $e->getMessage();
+    }
+    return $partner_id;
+}
 ?>
