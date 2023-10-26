@@ -1,0 +1,167 @@
+/* Information section */
+
+.parking-details-container, .parking-reviews-container {
+    border-radius: 10px;
+    background: var(--secondary-light, #E7DFDA);
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.parking-details-container > h1,h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.parking-info-title {
+    padding-top:70px;
+    text-align: center;
+    justify-content: center;
+}
+.parking-info-title > h3 {
+    font-size: 35px;
+    padding-left: 5px;
+}
+
+.parking-details-title,
+.parking-reviews-title {
+    border-radius: 10px;
+    background: var(--secondary-light, #E7DFDA);
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.parking-spotCount-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.parking-spotCount-left,
+.parking-spotCount-middle,
+.parking-price-right {
+    border-radius: 10px;
+    background: var(--background-light, #FFF);
+    padding: 5px;
+    width: calc(33.33% - 20px); /* 33.33% width with 20px margin */
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center;
+}
+
+.parking-adress-row,
+.parking-userInfo-row {
+    border-radius: 10px;
+    background: var(--background-light, #FFF);
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.parking-userInfo-row {
+    min-height: 80px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    flex-grow: 1;
+}
+
+
+.parking-details-container{
+    border-radius: 10px;
+    background: var(--secondary-light, #E7DFDA);
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+
+
+/* Reviews section */
+.parking-review-content {
+    height: 180px;
+    overflow-y: auto;
+}
+
+.parking-reviews-container > h1,h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.parking-review-list {
+    border-radius: 10px;
+    background: var(--background-light, #FFF);
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    
+    
+}
+
+@media (min-width: 768px) {
+    .parking-details-container, 
+    .parking-reviews-container {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .parking-details-content{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+@media (min-width: 992px) {
+    .parking-details-container, 
+    .parking-reviews-container {
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+    .parking-details-content{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .parking-details-container, 
+    .parking-reviews-container {
+        margin-left: 140px;
+        margin-right: 140px;
+    }
+    .parking-details-content{
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+}
+
+.reaf-rep-cont{
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+#view-reports-btn {
+    background-color: #C03535; 
+    color: "#F6F5F4";
+    margin: 30px;
+    padding: 10px 20px; /* Padding for the button */
+    font-size: 18px;
+    font-weight: 400;
+}

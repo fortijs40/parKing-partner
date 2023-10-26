@@ -87,11 +87,11 @@
                     <div class="user-account-details">
                         <div class="user-account-details-input">
                             <label for="phone_number">Phone number</label>
-                            <input type="text" name="phone_number" id="phone_number" value="<?php echo $partnerData['phone_number'];?>" class="input" style="font-size: 24px; color: black">
+                            <input type="text" name="phone_number" id="phone_number" value="<?php echo $partnerData['phone_number'];?>" class="input" style="font-size: 24px; color: black" disabled>
                         </div>
                         <div class="user-account-details-input">
                             <label for="email">Email</label>
-                            <input type="text" name="email" id="email" value="<?php echo $partnerData['email'];?>" class="input" style="font-size: 24px; color: black">
+                            <input type="text" name="email" id="email" value="<?php echo $partnerData['email'];?>" class="input" style="font-size: 24px; color: black" disabled>
                         </div>
                     </div>
                 </div>
