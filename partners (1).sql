@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `parkingspots` (
   `spot_address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
-  `price` decimal(10,0) NOT NULL,
+  `price` double(10,2) NOT NULL,
   `max_spot_count` int NOT NULL,
   `is_premium` tinyint DEFAULT NULL,
   `is_disabled` tinyint DEFAULT NULL,

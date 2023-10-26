@@ -102,7 +102,7 @@ try {
             <div class="modal-content">
                 <div class="parking-form">
                     <span class="close" id="close-modal" onclick="closeForm()">&times;</span>
-                    <form action="./php/parkingspot_reg.php" method="post">
+                    <form action="./php/parkingspot_reg.php" method="post" onsubmit="return validateForm()">
                         <h1>Register a Parking Spot</h1>
 
                         <label for="spot_name">Spot Name:</label>
@@ -118,7 +118,7 @@ try {
                         <input type="time" name="end_time"value="00:00"><br>
 
                         <label for="price">Price:</label>
-                        <input type="text" name="price" required><br>
+                        <input type="text" name="price" value="0.00" pattern="^\d+(\.\d{1,2})?$" required><br>
 
                         <label for="max_spot_count">Spot amount:</label>
                         <input type="number" min="1" step="1"name="max_spot_count" value="1"required><br>
@@ -139,23 +139,25 @@ try {
         </div>
         <div class="parking-list">
             <?php
-            foreach ($parkingData as $parkingSpot) {
-                echo "<div class='parking-space'>";
-                echo "<h2>{$parkingSpot['spot_name']}</h2>";
-                echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
-                echo "<p>Address: {$parkingSpot['spot_address']}</p>";
-                echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
-                echo "<div class='button-container'>";
-                
-                // Check if the user is logged in and is the creator of this spot
-                if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
-                    echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
+                foreach ($parkingData as $parkingSpot) {
+                    echo "<div class='parking-space'>";
+                    echo "<h2>{$parkingSpot['spot_name']}</h2>";
+                    echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
+                    echo "<p>Address: {$parkingSpot['spot_address']}</p>";
+                    echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
+                    echo "<div class='button-container'>";
+                    
+                    // Check if the user is logged in and is the creator of this spot
+                    if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
+                        echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
+                    }
+                    
+                    // Pass parking spot information to parkingspot_details.php
+                    echo "<a class='edit-button' href='parkingspot_details.php?id={$parkingSpot['spot_id']}&name={$parkingSpot['spot_name']}&start_time={$parkingSpot['start_time']}&end_time={$parkingSpot['end_time']}&address={$parkingSpot['spot_address']}&max_spot_count={$parkingSpot['max_spot_count']}&price={$parkingSpot['price']}&add_info={$parkingSpot['add_info']}'>View More</a>";
+                    
+                    echo "</div>";
+                    echo "</div>";
                 }
-                echo "<button class='edit-button' onclick='viewMore({$parkingSpot['spot_id']})'>View More</button>";
-                
-                echo "</div>";
-                echo "</div>";
-            }
             ?>
         </div>
     </div>
@@ -192,5 +194,33 @@ try {
         function viewMore(spotId) {
             // Implement your view more logic here or redirect to a details page with the spotId
         }
+
+        function validateForm() {
+            // Get the values of the start and end time input fields
+            var startTimeInput = document.querySelector('input[name="start_time"]');
+            var endTimeInput = document.querySelector('input[name="end_time"]');
+            
+            var startTime = startTimeInput.value;
+            var endTime = endTimeInput.value;
+
+            // Convert the time strings to JavaScript Date objects
+            var startTimeDate = new Date("1970-01-01T" + startTime + ":00Z");
+            var endTimeDate = new Date("1970-01-01T" + endTime + ":00Z");
+
+            // Check if the end time is earlier than the start time
+            if (endTimeDate <= startTimeDate) {
+                // Display an error message and prevent form submission
+                alert("End time cannot be earlier than or same as start time.");
+                endTimeInput.value = "00:00"; // Reset the end time
+                return false;
+            }
+
+            // If validation passes, allow the form submission
+            return true;
+        }
     </script>
+
+<script>
+
+</script>
 </html>
