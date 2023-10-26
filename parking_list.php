@@ -147,7 +147,7 @@ try {
                 foreach ($parkingData as $parkingSpot) {
                     echo "<div class='parking-space'>";
                     echo "<div class='first-line-info'><h2>{$parkingSpot['spot_name']} </h2> 
-                    <p> Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
+                    <p> Time: " . date('H:i', strtotime($parkingSpot['start_time'])) . " - " . date('H:i', strtotime($parkingSpot['end_time'])) . "</p>";
                     if ($parkingSpot['is_premium'] == 1) {
                         echo "<svg xmlns='http://www.w3.org/2000/svg' width='28' height='26' viewBox='0 0 28 26' fill='none'>
                                 <path d='M6.0312 0.75C5.77627 0.749909 5.5261 0.819124 5.30746 0.95024C5.08883 1.08136 4.90995 1.26944 4.78995 1.49438L1.03995 8.52562C0.911817 8.76588 0.856187 9.03817 0.879819 9.30944C0.90345 9.5807 1.00533 9.83927 1.17308 10.0538L12.8918 25.0537C13.0234 25.2221 13.1915 25.3582 13.3835 25.4519C13.5755 25.5455 13.7863 25.5942 14 25.5942C14.2136 25.5942 14.4244 25.5455 14.6164 25.4519C14.8084 25.3582 14.9766 25.2221 15.1081 25.0537L26.8268 10.0538C26.9943 9.83908 27.0958 9.58042 27.1191 9.30916C27.1424 9.0379 27.0865 8.76571 26.9581 8.52562L23.2081 1.49438C23.0882 1.26972 22.9097 1.08182 22.6914 0.950722C22.4731 0.819624 22.2233 0.750249 21.9687 0.75H6.0312ZM4.37558 8.25L6.87495 3.5625H9.26933L8.09746 8.25H4.37558ZM5.53058 11.0625H8.42558L10.355 17.2369L5.53058 11.0625ZM11.3712 11.0625H16.6287L14 19.4738L11.3712 11.0625ZM19.5743 11.0625H22.4693L17.645 17.2369L19.5762 11.0625H19.5743ZM23.6243 8.25H19.9025L18.7306 3.5625H21.125L23.6243 8.25ZM17.0037 8.25H10.9962L12.1681 3.5625H15.8318L17.0037 8.25Z' fill='#FED956'/>
@@ -167,8 +167,44 @@ try {
                     echo "<div class='second-line-info'>";
                     echo "<p><b>Address:</b> {$parkingSpot['spot_address']}</p>";
                         echo "<div class='button-container'>";
-                        echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['spot_id']})'>Edit</button>";
-                        // Pass parking spot information to parkingspot_details.php
+                    ?>
+                    <div id="edit-parking" class="modal">
+                    <div class="modal-content">
+                        <div class="parking-form">
+                            <span class="close" id="close-edit-modal" onclick="closeEditForm()">&times;</span>
+                            <form action="./php/parkinglist_upd.php" method="post" onsubmit="return validateEditForm()">
+                                <h1>Edit Parking Spot</h1>
+
+                                <input type="hidden" name="spot_id" id="edit-spot-id">
+
+                                <label for="edit-spot_name">Spot Name:</label>
+                                <input type="text" name="spot_name" id="edit-spot_name" value="<?php echo $parkingSpot['spot_name']?>"required><br>
+
+                                <label for="edit-spot_address">Spot Address:</label>
+                                <input type="text" name="spot_address" id="edit-spot_address" value="<?php echo $parkingSpot['spot_address']?>" required><br>
+
+                                <label for="edit-start_time">Start Time:</label>
+                                <input type="time" name="start_time" id="edit-start_time" value="<?php echo $parkingSpot['start_time']?>"><br>
+
+                                <label for="edit-end_time">End Time:</label>
+                                <input type="time" name="end_time" id="edit-end_time"value="<?php echo $parkingSpot['end_time']?>"><br>
+
+                                <label for="edit-price">Price:</label>
+                                <input type="text" name="price" id="edit-price" pattern="^\d+(\.\d{1,2})?$" value="<?php echo $parkingSpot['price']?>"required><br>
+
+                                <label for="edit-max_spot_count">Spot amount:</label>
+                                <input type="number" min="1" step="1" name="max_spot_count" id="edit-max_spot_count" value="<?php echo $parkingSpot['max_spot_count']?>"required><br>
+
+                                <label for="edit-add_info">Additional Information:</label>
+                                <textarea name="add_info" id="edit-add_info"><?php echo $parkingSpot['add_info']; ?></textarea><br>
+
+                                <input id="edit-submitButton" type="submit" value="Update">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    <button class='edit-button' onclick='openEditForm(<?php echo json_encode($parkingSpot); ?>)'>Edit</button>
+                    <?php
                         echo "<a class='viewmore-button' href='parkingspot_details.php?id={$parkingSpot['spot_id']}&name={$parkingSpot['spot_name']}&start_time={$parkingSpot['start_time']}&end_time={$parkingSpot['end_time']}&address={$parkingSpot['spot_address']}&max_spot_count={$parkingSpot['max_spot_count']}&price={$parkingSpot['price']}&add_info={$parkingSpot['add_info']}'>View More</a>";
                     echo "</div>";
                     echo "</div>";

@@ -76,7 +76,7 @@
 }
 .parking-list-bar{
     margin-top: 70px;
-
+    text-align: center;
 }
 .parking-list {
     overflow: auto; /* Ensure that the container is scrollable */
@@ -129,13 +129,8 @@
 }
 
 .status {
-  width: auto;
-  text-align: right;
-  font-size: 16px;
-  background-color: rgb(var(--background-color));
-  padding: 5px; /* Add padding to the status */
-  border-radius: 5px; /* Add border-radius for a rounded appearance */
-  margin-left: auto; /* Push the status to the right side */
+    text-align: right;
+    font-size: 16px;
 }
 
 .button-container {
@@ -143,15 +138,16 @@
 }
 
 .edit-button {
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  margin-left: 180px;
+  background-color: rgb(var(--primary-color));
+  color: rgb(var(--text-color));
+  border: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 .viewmore-button {
-  margin-left: 30px;
+  margin-left: 70px;
   background-color: rgb(var(--primary-color));
   color: rgb(var(--text-color));
   border-radius: 50px;
@@ -200,6 +196,13 @@
     border: 1px solid rgb(var(--primary-color));
     border-radius: 25px;
     outline: none;
+  }
+  #edit-submitButton{
+    background-color: rgb(var(--accept-color));
+  }
+  #edit-submitButton:hover{
+    background-color: rgb(var(--danger-color));
+    cursor: pointer;
   }
   #sumbitButton{
     background-color: rgb(var(--accept-color));

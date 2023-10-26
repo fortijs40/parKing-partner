@@ -33,17 +33,37 @@ document.getElementById("register-parking").style.display = "block";
 function closeForm() {
 document.getElementById("register-parking").style.display = "none";
 }
+function openEditForm(parkingSpot) {
+    document.getElementById("edit-parking").style.display = "block";
+    
+    // Populate form fields with data from the parking spot
+    document.getElementById("edit-spot_name").value = parkingSpot.spot_name;
+    document.getElementById("edit-spot_address").value = parkingSpot.spot_address;
+    document.getElementById("edit-start_time").value = parkingSpot.start_time;
+    document.getElementById("edit-end_time").value = parkingSpot.end_time;
+    document.getElementById("edit-price").value = parkingSpot.price;
+    document.getElementById("edit-max_spot_count").value = parkingSpot.max_spot_count;
+    document.getElementById("edit-add_info").value = parkingSpot.add_info;
+}
+function closeEditForm() {
+document.getElementById("edit-parking").style.display = "none";
+}
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
 let modal = document.getElementById('register-parking');
 let notificationModal = document.getElementById('notification-modal');
+let editModal = document.getElementById('edit-parking');
 if (event.target == modal) {
     closeForm();
 }
 if(event.target == notificationModal){
     closeNotifications();
 }
+if(event.target == editModal){
+    closeEditForm();
 }
+}
+
 // JavaScript functions for handling edit and view more buttons
 function editParkingSpot(spotId) {
     // Implement your edit logic here or redirect to an edit page with the spotId
