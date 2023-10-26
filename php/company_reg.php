@@ -120,8 +120,8 @@ try {
 
     if (count($data) > 0) {
 
-        $apiUrl = 'http://rhomeserver.ddns.net:8086/companies/create/' . $_last_id;
-
+        $apiUrl = 'dsadsadsahtdsadsatp://rhomeserver.ddns.net:8086/companies/create/' . $_last_id;
+        echo $apiUrl;
         $ch = curl_init($apiUrl);
 
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -149,5 +149,5 @@ try {
 
 echo '<br>';
 
-header('Location: ../login.php');
+//header('Location: ../login.php');
 exit;
