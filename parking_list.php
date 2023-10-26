@@ -153,7 +153,7 @@ try {
                     }
                     
                     // Pass parking spot information to parkingspot_details.php
-                    echo "<a class='edit-button' href='parkingspot_details.php?id={$parkingSpot['spot_id']}&name={$parkingSpot['spot_name']}&start_time={$parkingSpot['start_time']}&end_time={$parkingSpot['end_time']}&address={$parkingSpot['spot_address']}&max_spot_count={$parkingSpot['max_spot_count']}&price={$parkingSpot['price']}&add_info={$parkingSpot['add_info']}'>View More</a>";
+                    echo "<a class='edit-button' href='parkingspot_details.php?id={$parkingSpot['spot_id']}'>View More</a>";
                     
                     echo "</div>";
                     echo "</div>";
