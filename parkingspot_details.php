@@ -4,21 +4,29 @@
         session_name('session_1');
         session_start();
         
-        require_once '.\php\connection.php';
-
+        require_once './php/connection.php';
+        
         if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
             header("Location: login.php");
             exit();
         }
-
-        $personId = $_SESSION['person_id'];
-
-        $stmt = $conn->prepare("SELECT * FROM persons WHERE person_id = :person_id");
-        $stmt->bindParam(':person_id', $personId);
-        $stmt->execute();
-        $partnerData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $spotId = $_GET['id'];
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve information from the form submission
+            $spotId = $_POST['spot_id'];
+            $spotName = $_POST['spot_name'];
+            $startTime = date('H:i', strtotime($_POST['start_time']));
+            $endTime = date('H:i', strtotime($_POST['end_time']));
+            $address = $_POST['spot_address'];
+            $maxSpotCount = $_POST['max_spot_count'];
+            $price = $_POST['price'];
+            $price = number_format((float)$price, 2, '.', '');
+            $addInfo = $_POST['add_info'];
+        } else {
+            // Handle the case when there's no form submission data
+            header("Location: parking_list.php"); // Redirect back to the parking list page or display an error message
+            exit();
+        }
 
         $stmt = $conn->prepare("SELECT * FROM reviews WHERE spot_id = :spot_id");
         $stmt->bindParam(':spot_id', $spotId);
@@ -74,17 +82,6 @@
     <div class="details-container">
         <div class="parking-info-container">
         <?php
-            // Retrieve information from URL parameters
-            $id = $_GET['id'];
-            $name = $_GET['name'];
-            $startTime = date('H:i', strtotime($_GET['start_time']));
-            $endTime = date('H:i', strtotime($_GET['end_time']));
-            $address = $_GET['address'];
-            $maxSpotCount = $_GET['max_spot_count'];
-            $price = $_GET['price'];
-            $price = number_format((float)$price, 2, '.', '');
-            $addInfo = $_GET['add_info'];
-
             $avgScore = 0.00;
             $revCount = 0;
             if (!empty($reviews)) {
@@ -97,7 +94,7 @@
 
             // Output parking spot information in your HTML
             echo "<div class='parking-info-title'>";
-                echo "<h1>{$name}</h1><h3> ({$startTime} - {$endTime})</h3>";
+                echo "<h1>{$spotName}</h1><h3> ({$startTime} - {$endTime})</h3>";
             echo "</div>";
             echo "<div class='parking-details-container'>";
                 echo "<div class='parking-details-title'>";
@@ -162,14 +159,13 @@
     </div>
     
 
-    <footer>
-        <div class="footer">
-            <img src="src/img/logo.png" alt="ParKing" class="footer-logo">
-            <p>Copyright © 2023 ParKing. All rights reserved.</p>
-        </div>
-    </footer>
+    <div class="footer">
+        <img src="src/img/logo.png" alt="ParKing" class="footer-logo">
+        <p>Copyright © 2023 ParKing. All rights reserved.</p>
+    </div>
 
 
     
 </body>
 <script src="src/js/main.js"></script>
+</html>
