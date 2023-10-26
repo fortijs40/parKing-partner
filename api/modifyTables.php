@@ -45,6 +45,7 @@ function updateReservations($data) {
         $stmt->bindParam(':payment_sum', $data['payment_sum']);
 
         $stmt->execute();
+        sendSSEUpdate(['type' => 'reservation', 'message' => 'Someone has reserved a spot in your parking spot. Till ' . $data['end_time']]);
         echo "Reservation data inserted successfully.<br>";
     } catch(PDOException $e) {
         echo "Error inserting reservation data: " . $e->getMessage();
@@ -54,22 +55,25 @@ function updateReservations($data) {
 function updateReviews($data) {
     global $conn;
     try {
-        $spot_id = $data['spot_id'];
+        $spot_id = $data['parking']['id'];
         $partner_id = getPartnerIdFromSpotId($spot_id);
         $stmt = $conn->prepare("INSERT INTO reviews (partner_id, spot_id, rev_description, posted_time, rating, title, is_read) 
                                VALUES (:partner_id, :spot_id, :rev_description, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i'), :rating, :title, 0)");
 
         $stmt->bindParam(':partner_id', $partner_id);
         $stmt->bindParam(':spot_id', $spot_id);
-        $stmt->bindParam(':rev_description', $data['rev_description']);
+        $stmt->bindParam(':rev_description', $data['description']);
         $stmt->bindParam(':rating', $data['rating']);
         $stmt->bindParam(':title', $data['title']);
 
         $stmt->execute();
         echo "Review data inserted successfully.<br>";
+
+        sendSSEUpdate(['type' => 'review', 'message' => 'Someone has left a review for your parking spot. Rating left: ' . $data['rating']]);
     } catch(PDOException $e) {
         echo "Error inserting review data: " . $e->getMessage();
     }
+    sendSSEUpdate('New reservation added: ' . $data['spot_id']);
 }
 
 function updateReports($data) {
@@ -86,9 +90,12 @@ function updateReports($data) {
 
         $stmt->execute();
         echo "Report data inserted successfully.<br>";
+        
+        sendSSEUpdate(['type' => 'report', 'message' => 'You have received a REPORT for your parking spot.']);
     } catch(PDOException $e) {
         echo "Error inserting report data: " . $e->getMessage();
     }
+    sendSSEUpdate('New reservation added: ' . $data['spot_id']);
 }
 function getPartnerIdFromSpotId($spot_id) {
     global $conn;
@@ -105,5 +112,17 @@ function getPartnerIdFromSpotId($spot_id) {
         echo "Error retrieving partner_id: " . $e->getMessage();
     }
     return $partner_id;
+}
+function sendSSEUpdate($data) {
+    $sseEndpoint = '../php/sse_updates.php'; // URL to your SSE endpoint
+    $postData = json_encode($data);
+
+    $curl = curl_init($sseEndpoint);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
 }
 ?>

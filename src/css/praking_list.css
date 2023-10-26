@@ -76,13 +76,13 @@
 }
 .parking-list-bar{
     margin-top: 70px;
-
+    text-align: center;
 }
 .parking-list {
     overflow: auto; /* Ensure that the container is scrollable */
     height: 400px;
 }
-  
+
   .parking-list::-webkit-scrollbar {
     width: 12px; /* Set the width of the scrollbar */
   }
@@ -95,20 +95,37 @@
     background-color: rgb(var(--primary-color));
     border-radius: 6px; /* Round the corners of the thumb */
   }
+.first-line-info{
+  display: flex;
+  align-items: center;
+  
+}
+.second-line-info{
+  display: flex;
+  align-items: center;
+}
+.first-line-info p, svg {
+  margin-right: 20px;
+}
 .parking-space {
-    width: 350px;
+    font-weight: bold;
+    font-size: xx-large;
+    width: 1200px;
     margin: 10px;
     padding: 10px;
+    background-color: rgb(var(--secondary-color));
     border: 1px solid #ccc;
+    border-radius: 25px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .parking-space h2 {
-    font-size: 18px;
+    font-size: 30px;
+    margin-right: 20px;
 }
-
 .parking-space p {
-    font-size: 14px;
+    font-size: 24px;
 }
 
 .status {
@@ -121,19 +138,28 @@
 }
 
 .edit-button {
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  margin-left: 180px;
+  background-color: rgb(var(--primary-color));
+  color: rgb(var(--text-color));
+  border: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.viewmore-button {
+  margin-left: 70px;
+  background-color: rgb(var(--primary-color));
+  color: rgb(var(--text-color));
+  border-radius: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 /* Modal Styles */
 .modal {
     display: none;
     position: fixed;
     z-index: 8;
-    left: 0;
+    left: 1;
     top: 0;
     width: 100%;
     height: 100%;
@@ -147,11 +173,14 @@
     margin: 50px auto;
     width: 40%;
     background-color: rgb(var(--secondary-color));
+    position:center;
+    border-radius: 5px;
   }
   h1 {
     margin: 0 0 20px;
     font-weight: bold;
-    color: rgb(var(--primary-color));
+    color: rgb(var(--primary-color)); 
+    
   }
   span {
     color: #666;
@@ -170,6 +199,13 @@
     border: 1px solid rgb(var(--primary-color));
     border-radius: 25px;
     outline: none;
+  }
+  #edit-submitButton{
+    background-color: rgb(var(--accept-color));
+  }
+  #edit-submitButton:hover{
+    background-color: rgb(var(--danger-color));
+    cursor: pointer;
   }
   #sumbitButton{
     background-color: rgb(var(--accept-color));
@@ -208,4 +244,121 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+
+/* Notification container */
+  .modal2 {
+    display: none;
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    top: 100px;
+    
+    background: rgba(0, 0, 0, 0.5);
+    
+  }
+  .modal-content2 {
+    border-radius: 5%;
+    text-align: center;
+    
+    margin: 50px auto;
+    width: 40%;
+    background-color: rgb(var(--background-color));
+    position:center;
+    border-radius: 5px;
+    overflow: auto;
+    border: 1px solid; /* Add 'solid' to define the border style */
+    border-radius: 30px;
+    
+  }
+
+  .close2 {
+    color: #aaa;
+    float: right;
+    padding-right: 20px;
+    padding-top: 10px;
+    font-size: 60px;
+    font-weight: bold;
+  }
+  .close2:hover,
+  .close2:focus {
+    color: rgb(255, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+  }
+.display-notification {
+  background-color: rgb(var(--secondary-color));
+  border: 1px solid #999;
+  width: 90%;
+  bottom: 90%;
+  /* left:10px; */
+  margin: 50px auto;
+  height: 40%; /* Set the height */
+  border: 1px solid #999;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  overflow: auto;
+  border: 1px solid; /* Add 'solid' to define the border style */
+    border-radius: 30px;
+  
+}
+.display-contextBox {
+  
+  /* background-color: rgb(var(--secondary-color)); */
+  /* margin: 10px; */
+  margin-bottom: 20px;
+  margin-top:10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  
+}
+.display-contextBox h3 {
+  border: 1px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 90%;
+  
+  font-size: 1.2em;
+  background-color:rgb(var(--background-color));
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  /* margin-bottom: 20px; */
+  padding: 10px; /* Add padding to create space around each h3 element */
+  margin: 10px 0;
+}
+.display-contextBox h4 {
+  border: 1px;
+  border-radius: 12px;
+  padding: 5px;
+  width: 90%;
+  
+  font-size: 1.2em;
+  background-color:rgb(var(--primary-color));
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  /* margin-bottom: 20px; */
+  padding: 10px; /* Add padding to create space around each h3 element */
+  margin: 10px 0;
  
+}
+.display-notification::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+.display-notification::-webkit-scrollbar-track {
+  background-color: rgb(201, 198, 198);
+  border-radius: 6px; /* Round the corners of the scrollbar track */
+}
+
+.display-notification::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--primary-color));
+  border-radius: 6px; /* Round the corners of the thumb */
+}
