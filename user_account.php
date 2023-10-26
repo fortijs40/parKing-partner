@@ -4,7 +4,7 @@
         session_name('session_1');
         session_start();
         
-        require_once '.\php\connection.php';
+        require_once './php/connection.php';
 
         if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
             header("Location: login.php");

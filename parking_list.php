@@ -7,7 +7,7 @@ if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
     header("Location: login.php");
     exit();
 }
-require_once '.\php\connection.php';
+require_once './php/connection.php';
 $redirectURL = ($_SESSION['type_id'] == 1) ? 'user_account.php' : 'business_account.php';
 try {
     // Connect to the database

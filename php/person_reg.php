@@ -151,5 +151,5 @@ try {
 echo '<br>';
 
 
-header('./login.php');
+header('Location: ../login.php');
 exit;
