@@ -120,11 +120,11 @@ CREATE TABLE IF NOT EXISTS `persons` (
 -- Table structure for table `reports`
 --
 
+
 DROP TABLE IF EXISTS `reports`;
 CREATE TABLE IF NOT EXISTS `reports` (
   `rep_id` bigint NOT NULL AUTO_INCREMENT,
   `partner_id` bigint NOT NULL,
-  `client_id` bigint NOT NULL,
   `spot_id` bigint DEFAULT NULL,
   `rep_description` text COLLATE utf8mb3_unicode_ci,
   `is_read` tinyint DEFAULT NULL,
@@ -143,12 +143,8 @@ DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE IF NOT EXISTS `reservations` (
   `reserv_id` bigint NOT NULL AUTO_INCREMENT,
   `partner_id` bigint NOT NULL,
-  `client_id` bigint NOT NULL,
   `spot_id` bigint DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `start_time` time DEFAULT NULL,
-  `end_time` time DEFAULT NULL,
+  `end_time` datetime DEFAULT NULL,
   `parkingspot` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `payment_sum` int DEFAULT NULL,
   `is_read` tinyint DEFAULT NULL,
@@ -167,7 +163,6 @@ DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE IF NOT EXISTS `reviews` (
   `rev_id` bigint NOT NULL AUTO_INCREMENT,
   `partner_id` bigint NOT NULL,
-  `client_id` bigint NOT NULL,
   `spot_id` bigint DEFAULT NULL,
   `rev_description` text COLLATE utf8mb3_unicode_ci,
   `posted_time` datetime(6) DEFAULT NULL,
@@ -178,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   KEY `partner_id` (`partner_id`),
   KEY `spot_id` (`spot_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
 
 --
 -- Constraints for dumped tables
