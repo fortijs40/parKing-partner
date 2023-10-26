@@ -10,6 +10,22 @@
             header("Location: login.php");
             exit();
         }
+
+        $updateStatus = isset($_GET['update']) ? $_GET['update'] : '';
+
+        // Display corresponding messages if data was updated
+        if ($updateStatus === 'success') {
+            echo '<script>alert("User information updated successfully. Password was changed");</script>';
+        } elseif ($updateStatus === 'no-password-change') {
+            echo '<script>alert("User information updated successfully. No password change.");</script>';
+        } elseif ($updateStatus === 'failed') {
+            echo '<script>alert("User information update failed.");</script>';
+        }elseif ($updateStatus === 'successBank') {
+            echo '<script>alert("Banking details updated successfully.");</script>';
+        }elseif ($updateStatus === 'failedBank') {
+            echo '<script>alert("Banking details update failed.");</script>';
+        }
+
         $companyId = $_SESSION['company_id'];
 
         $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :company_id");
@@ -109,14 +125,20 @@
                 </div>
                 <div class="user-bank-details">
                     <div class="user-bank-details">
-                        <div class="user-bank-details-input">
-                            <label for="bank_account">Bank account</label>
-                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 20px; color: black">
-                        </div>
-                        <div class="user-bank-details-input">
-                            <label for="billing_address">Billing adress</label>
-                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 20px; color: black"></textarea>
-                        </div>
+                        <form action="/php/banking_upd.php" method="post" style = "margin-right: 200px">
+                            <div class="user-bank-details-input">
+                                <label for="bank_account" style="font-size: 20px;">Bank account</label>
+                                <input type="text" name="bank_account" id="bank_account" value="<?php echo $partnerData['bank_account'];?>" class="input" style="font-size: 20px; color: black">
+                            </div>
+                            <div class="user-bank-details-input">
+                                <label for="billing_address" style="font-size: 20px;">Billing adress</label>
+                                <textarea name="billing_address" id="billing_address" class="input" style="font-size: 20px; color: black"><?php echo $partnerData['billing_address']; ?></textarea>
+                            </div>
+                            <div class="user-account-update" style = "margin-left: 200px">
+                                <label for="update"></label>
+                                <input type="submit" id="update" value="Update" class="btn btn-primary">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -126,7 +148,7 @@
                 </div>
                 <div class="user-account-settings">
                     <div class="user-account-settings-inputs">
-                        <form id="updateForm"> <!-- To update the database with new info, gotta implement this-->
+                        <form action="/php/company_upd.php" method="post">
                             <div class="user-account-settings-input">
                                 <label for="email" style="height: 15px">Email</label>
                                 <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="color: black; height: 12px">
@@ -154,7 +176,8 @@
                                 </div>
                             </div>
                             <div class="user-account-update">
-                                <button class="btn btn-primary">Update</button>
+                                <label for="update"></label>
+                                <input type="submit" id="update" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>
