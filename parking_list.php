@@ -218,7 +218,22 @@ $reviews = [];
                 </div>
                     <button class='edit-button' onclick='openEditForm(<?php echo json_encode($parkingSpot); ?>)'>Edit</button>
                     <?php
-                        echo "<a class='viewmore-button' href='parkingspot_details.php?id={$parkingSpot['spot_id']}&name={$parkingSpot['spot_name']}&start_time={$parkingSpot['start_time']}&end_time={$parkingSpot['end_time']}&address={$parkingSpot['spot_address']}&max_spot_count={$parkingSpot['max_spot_count']}&price={$parkingSpot['price']}&add_info={$parkingSpot['add_info']}'>View More</a>";
+                        echo "<div class='button-container'>";
+                        echo "<form action='parkingspot_details.php' method='post'>";
+                        echo "<input type='hidden' name='spot_id' value='{$parkingSpot['spot_id']}'>";
+                        echo "<input type='hidden' name='spot_name' value='{$parkingSpot['spot_name']}'>";
+                        echo "<input type='hidden' name='start_time' value='{$parkingSpot['start_time']}'>";
+                        echo "<input type='hidden' name='end_time' value='{$parkingSpot['end_time']}'>";
+                        echo "<input type='hidden' name='spot_address' value='{$parkingSpot['spot_address']}'>";
+                        echo "<input type='hidden' name='max_spot_count' value='{$parkingSpot['max_spot_count']}'>";
+                        echo "<input type='hidden' name='price' value='{$parkingSpot['price']}'>";
+                        echo "<input type='hidden' name='add_info' value='{$parkingSpot['add_info']}'>";
+                        echo "<button class='edit-button' type='submit'>View Details</button>";
+                        echo "</form>";
+                    
+                    // Pass parking spot information to parkingspot_details.php
+                    
+                    echo "</div>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
