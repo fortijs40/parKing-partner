@@ -146,21 +146,26 @@ try {
             <?php
                 foreach ($parkingData as $parkingSpot) {
                     echo "<div class='parking-space'>";
-                    echo "<h2>{$parkingSpot['spot_name']}</h2>";
-                    echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
-                    echo "<p>Address: {$parkingSpot['spot_address']}</p>";
-                    echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
-                    echo "<div class='button-container'>";
-                    
-                    // Check if the user is logged in and is the creator of this spot
-                    if (isset($_SESSION['logged_user']) && $_SESSION['logged_user'] == $parkingSpot['partner_id']) {
-                        echo "<button class='edit-button' onclick='editParkingSpot({$parkingSpot['id']})'>Edit</button>";
-                    }
-                    
-                    // Pass parking spot information to parkingspot_details.php
-                    echo "<a class='edit-button' href='parkingspot_details.php?id={$parkingSpot['spot_id']}&name={$parkingSpot['spot_name']}&start_time={$parkingSpot['start_time']}&end_time={$parkingSpot['end_time']}&address={$parkingSpot['spot_address']}&max_spot_count={$parkingSpot['max_spot_count']}&price={$parkingSpot['price']}&add_info={$parkingSpot['add_info']}'>View More</a>";
-                    
-                    echo "</div>";
+                        echo "<h2>{$parkingSpot['spot_name']}</h2>";
+                        echo "<p>Time: {$parkingSpot['start_time']} - {$parkingSpot['end_time']}</p>";
+                        echo "<p>Address: {$parkingSpot['spot_address']}</p>";
+                        echo "<div class='status'>Free Spots: {$parkingSpot['max_spot_count']}</div>";
+                        echo "<div class='button-container'>";
+                            echo "<form action='parkingspot_details.php' method='post'>";
+                            echo "<input type='hidden' name='spot_id' value='{$parkingSpot['spot_id']}'>";
+                            echo "<input type='hidden' name='spot_name' value='{$parkingSpot['spot_name']}'>";
+                            echo "<input type='hidden' name='start_time' value='{$parkingSpot['start_time']}'>";
+                            echo "<input type='hidden' name='end_time' value='{$parkingSpot['end_time']}'>";
+                            echo "<input type='hidden' name='spot_address' value='{$parkingSpot['spot_address']}'>";
+                            echo "<input type='hidden' name='max_spot_count' value='{$parkingSpot['max_spot_count']}'>";
+                            echo "<input type='hidden' name='price' value='{$parkingSpot['price']}'>";
+                            echo "<input type='hidden' name='add_info' value='{$parkingSpot['add_info']}'>";
+                            echo "<button class='edit-button' type='submit'>View Details</button>";
+                            echo "</form>";
+                        
+                        // Pass parking spot information to parkingspot_details.php
+                        
+                        echo "</div>";
                     echo "</div>";
                 }
             ?>
