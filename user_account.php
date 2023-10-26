@@ -11,6 +11,20 @@
             exit();
         }
 
+        $updateStatus = isset($_GET['update']) ? $_GET['update'] : '';
+
+        if ($updateStatus === 'success') {
+            echo '<script>alert("User information updated successfully. Password was changed");</script>';
+        } elseif ($updateStatus === 'no-password-change') {
+            echo '<script>alert("User information updated successfully. No password change.");</script>';
+        } elseif ($updateStatus === 'failed') {
+            echo '<script>alert("User information update failed.");</script>';
+        }elseif ($updateStatus === 'successBank') {
+            echo '<script>alert("Banking details updated successfully.");</script>';
+        }elseif ($updateStatus === 'failedBank') {
+            echo '<script>alert("Banking details update failed.");</script>';
+        }
+
         $personId = $_SESSION['person_id'];
 
         $stmt = $conn->prepare("SELECT * FROM persons WHERE person_id = :person_id");
@@ -97,14 +111,20 @@
                 </div>
                 <div class="user-bank-details">
                     <div class="user-bank-details">
-                        <div class="user-bank-details-input">
-                            <label for="bank_account">Bank account</label>
-                            <input type="text" name="bank_account" id="bank_account" placeholder="LV80*************5001" class="input" style="font-size: 24px; color: black">
-                        </div>
-                        <div class="user-bank-details-input">
-                            <label for="billing_address">Billing adress</label>
-                            <textarea name="billing_address" id="billing_address" placeholder="Maskavas iela 208, Latgales priekšpilsēta, Rīga, Latvija, LV-1019" class="input" style="font-size: 24px; color: black"></textarea>
-                        </div>
+                        <form action="/php/banking_upd.php" method="post" style = "margin-right: 200px">
+                            <div class="user-bank-details-input">
+                                <label for="bank_account" style="font-size: 20px; height: 15px">Bank account</label>
+                                <input type="text" name="bank_account" id="bank_account" value="<?php echo $partnerData['bank_account'];?>" class="input" style="font-size: 20px; color: black">
+                            </div>
+                            <div class="user-bank-details-input">
+                                <label for="billing_address" style="font-size: 20px; height: 15px">Billing adress</label>
+                                <textarea name="billing_address" id="billing_address" class="input" style="font-size: 20px; color: black"><?php echo $partnerData['billing_address']; ?></textarea>
+                            </div>
+                            <div class="user-account-update" style = "margin-left: 200px">
+                                <label for="update"></label>
+                                <input type="submit" id="update" value="Update" class="btn btn-primary">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -115,31 +135,34 @@
                 </div>
                 <div class="user-account-settings">
                     <div class="user-account-settings-inputs">
-                        <div class="user-account-settings-input">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="color: black">
-                        </div>
-                        <div class="user-account-settings-input">
-                            <label for="phone_number">Phone number</label>
-                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="color: black">
-                        </div>
-                        <div class="user-account-settings-input">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Current password" class="input" style="color: black">
-                        </div>
-                        <div class="user-account-settings-password-confirm">
+                        <form action="/php/person_upd.php" method="post">
                             <div class="user-account-settings-input">
-                                <label for="new-password">New Password</label>
-                                <input type="password" name="new-password" id="new-password" placeholder="New password" class="input" style="color: black">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="color: black">
                             </div>
                             <div class="user-account-settings-input">
-                                <label for="confirm-password">Confirm Password</label>
-                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input" style="color: black">
+                                <label for="phone_number">Phone number</label>
+                                <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="color: black">
                             </div>
-                        </div>
-                        <div class="user-account-update">
-                            <button class="btn btn-primary">Update</button>
-                        </div>
+                            <div class="user-account-settings-input">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Current password" class="input" style="color: black">
+                            </div>
+                            <div class="user-account-settings-password-confirm">
+                                <div class="user-account-settings-input">
+                                    <label for="new-password">New Password</label>
+                                    <input type="password" name="new-password" id="new-password" placeholder="New password" class="input" style="color: black">
+                                </div>
+                                <div class="user-account-settings-input">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input" style="color: black">
+                                </div>
+                            </div>
+                            <div class="user-account-update">
+                                <label for="signup"></label>
+                                <input type="submit" id="update" value="Update" class="btn btn-primary">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="user-account-settings">
