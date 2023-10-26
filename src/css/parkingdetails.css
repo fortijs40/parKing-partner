@@ -112,10 +112,82 @@
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
     
-    
 }
 
-@media (min-width: 768px) {
+.reaf-rep-cont{
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+#view-reports-btn {
+    background-color: #C03535; 
+    color: "#F6F5F4";
+    margin: 30px;
+    padding: 10px 20px; /* Padding for the button */
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Design for reports */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+  }
+
+.parking-report-container {
+    height: 80%;
+    overflow-y: auto;
+    border-radius: 10px;
+    background: var(--secondary-light, #E7DFDA);
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.parking-report-content {
+    overflow-y: auto;
+}
+  
+  .modal-content {
+    border: 1px solid rgba(0, 0, 0, 0.40);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 80%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  @media (min-width: 768px) {
     .parking-details-container, 
     .parking-reviews-container {
         margin-left: 100px;
@@ -124,6 +196,10 @@
     .parking-details-content{
         margin-left: 40px;
         margin-right: 40px;
+    }
+    .modal-content {
+        width: 80%;
+        height: 70%;
     }
 }
 
@@ -137,6 +213,10 @@
         margin-left: 50px;
         margin-right: 50px;
     }
+    .modal-content {
+        width: 65%;
+        height: 60%;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -149,7 +229,12 @@
         margin-left: 70px;
         margin-right: 70px;
     }
+    .modal-content {
+        width: 50%;
+        height: 50%;
+    }
 }
+  
 
 .reaf-rep-cont{
     display: flex; /* Use flexbox */

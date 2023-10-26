@@ -33,6 +33,11 @@
         $stmt->execute();
         $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $stmt = $conn->prepare("SELECT * FROM reports WHERE spot_id = :spot_id");
+        $stmt->bindParam(':spot_id', $spotId);
+        $stmt->execute();
+        $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         $conn = null;
     ?>
     
@@ -79,6 +84,7 @@
             </div>
         </div>
     </header>
+    
     <div class="details-container">
         <div class="parking-info-container">
         <?php
@@ -155,9 +161,40 @@
     </div>
 
     <div class="reaf-rep-cont">
-        <button id="view-reports-btn" class="btn btn-primary" onclick=openForm()>Read reports</button>
+        <button id="view-reports-btn" class="btn btn-primary" onclick=openModal()>Read reports</button>
     </div>
     
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 style="text-align: center;">Reports</h2>
+            <div class="parking-report-container">
+                <?php
+                    echo "<div class='parking-review-container'>";
+                        if (!empty($reports)) {
+                            foreach ($reports as $report) {
+                                echo "<div class='parking-review-list'>";
+                                    echo "<div class='review'>";
+                                        echo "<h2>{$report['title']}</h2>";
+                                        if (($report['rep_description'])) {
+                                            echo "<h3>{$report['rep_description']}</h3>";
+                                        } else {
+                                            echo "<h3>No details were provided</h3>";
+                                        }
+                                            
+                                    echo "</div>";
+                                echo "</div>"; 
+                            }
+                        } else {
+                            echo "<p style = 'display: flex;align-items: center;justify-content: center;text-align: center; margin:30px'>No reports available for this parking spot.</p>";
+                        }
+                    echo "</div>";
+                    
+                ?>
+            </div>
+            <div id="reportsList"></div>
+        </div>
+    </div>
 
     <div class="footer">
         <img src="src/img/logo.png" alt="ParKing" class="footer-logo">
@@ -168,4 +205,33 @@
     
 </body>
 <script src="src/js/main.js"></script>
+<script>
+    var modal = document.getElementById("myModal");
+
+    var btn = document.getElementById("view-reports-btn");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+
+        var reportsList = document.getElementById("reportsList");
+
+        reportsData.forEach(function(report) {
+            var reportItem = document.createElement("div");
+            reportItem.innerHTML = "<h3>" + report.title + "</h3><p>" + report.desc + "</p>";
+            reportsList.appendChild(reportItem);
+        });
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </html>
