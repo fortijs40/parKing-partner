@@ -55,14 +55,14 @@ function updateReservations($data) {
 function updateReviews($data) {
     global $conn;
     try {
-        $spot_id = $data['spot_id'];
+        $spot_id = $data['parking']['id'];
         $partner_id = getPartnerIdFromSpotId($spot_id);
         $stmt = $conn->prepare("INSERT INTO reviews (partner_id, spot_id, rev_description, posted_time, rating, title, is_read) 
                                VALUES (:partner_id, :spot_id, :rev_description, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i'), :rating, :title, 0)");
 
         $stmt->bindParam(':partner_id', $partner_id);
         $stmt->bindParam(':spot_id', $spot_id);
-        $stmt->bindParam(':rev_description', $data['rev_description']);
+        $stmt->bindParam(':rev_description', $data['description']);
         $stmt->bindParam(':rating', $data['rating']);
         $stmt->bindParam(':title', $data['title']);
 
