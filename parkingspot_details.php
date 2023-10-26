@@ -1,38 +1,33 @@
-<?php
-    session_name('session_1');
-    session_start();
-        
-    require_once '.\php\connection.php';
-
-    if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
-        header("Location: login.php");
-        exit();
-    }
-
-    $personId = $_SESSION['person_id'];
-
-    $stmt = $conn->prepare("SELECT * FROM persons WHERE person_id = :person_id");
-    $stmt->bindParam(':person_id', $personId);
-    $stmt->execute();
-    $partnerData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    $spotId = $_GET['id'];
-
-    $stmt = $conn->prepare("SELECT * FROM parkingspots WHERE spot_id = :spot_id");
-    $stmt->bindParam(':spot_id', $spotId);
-    $stmt->execute();
-    $parkingspot = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    $stmt = $conn->prepare("SELECT * FROM reviews WHERE spot_id = :spot_id");
-    $stmt->bindParam(':spot_id', $spotId);
-    $stmt->execute();
-    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $conn = null;
-?>
-
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
+    <?php
+        session_name('session_1');
+        session_start();
+        
+        require_once '.\php\connection.php';
+
+        if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
+            header("Location: login.php");
+            exit();
+        }
+
+        $personId = $_SESSION['person_id'];
+
+        $stmt = $conn->prepare("SELECT * FROM persons WHERE person_id = :person_id");
+        $stmt->bindParam(':person_id', $personId);
+        $stmt->execute();
+        $partnerData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $spotId = $_GET['id'];
+
+        $stmt = $conn->prepare("SELECT * FROM reviews WHERE spot_id = :spot_id");
+        $stmt->bindParam(':spot_id', $spotId);
+        $stmt->execute();
+        $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $conn = null;
+    ?>
+    
 <head>
     <title>ParKing</title>
     <meta charset="UTF-8">
@@ -80,16 +75,15 @@
         <div class="parking-info-container">
         <?php
             // Retrieve information from URL parameters
-
-            $id = $parkingspot['id'];
-            $name = $parkingspot['spot_name'];
-            $startTime = date('H:i', strtotime($parkingspot['start_time']));
-            $endTime = date('H:i', strtotime($parkingspot['end_time']));
-            $address = $parkingspot['spot_address'];
-            $maxSpotCount = $parkingspot['max_spot_count'];
-            $price = $parkingspot['price'];
+            $id = $_GET['id'];
+            $name = $_GET['name'];
+            $startTime = date('H:i', strtotime($_GET['start_time']));
+            $endTime = date('H:i', strtotime($_GET['end_time']));
+            $address = $_GET['address'];
+            $maxSpotCount = $_GET['max_spot_count'];
+            $price = $_GET['price'];
             $price = number_format((float)$price, 2, '.', '');
-            $addInfo = $parkingspot['add_info'];
+            $addInfo = $_GET['add_info'];
 
             $avgScore = 0.00;
             $revCount = 0;
