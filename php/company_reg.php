@@ -41,7 +41,10 @@ if (empty($_POST['password'])) {
 } elseif (isset($_POST['password'] )) {
     $_password=$_POST['password'];
 }
-
+$_bank_account = NULL;
+if (isset($_POST['bank_account'] )) {
+    $_bank_account=$_POST['bank_account'];
+}
 $_hashed_password = password_hash($_password, PASSWORD_DEFAULT);
 
 $_password_confirmed = NULL;
@@ -82,8 +85,8 @@ try {
 
     $stmt->execute();
 
-    $stmt = $conn->prepare("INSERT INTO companies(partner_id, company_name, reg_no, email, phone_number, second_phone_no)
-                                    VALUES (:partner_id, :company_name, :reg_no, :email, :phone_number, :second_phone_no)");
+    $stmt = $conn->prepare("INSERT INTO companies(partner_id, company_name, reg_no, email, phone_number, second_phone_no, bank_account)
+                                    VALUES (:partner_id, :company_name, :reg_no, :email, :phone_number, :second_phone_no, :bank_account)");
 
     $stmt->bindParam(':partner_id', $_last_id);
     $stmt->bindParam(':company_name', $_company_name);
@@ -91,6 +94,7 @@ try {
     $stmt->bindParam(':email', $_email);
     $stmt->bindParam(':phone_number', $_phone_number);
     $stmt->bindParam(':second_phone_no', $_second_phone_no);
+    $stmt->bindParam(':bank_account', $_bank_account);
 
     $stmt->execute();
 
@@ -105,28 +109,28 @@ try {
 $_last_id = NULL;
 
 try {
-
     require_once 'connection.php';
-
     $_last_id = $conn->lastInsertId();
 
-    $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :last_insert");
-
+    $stmt = $conn->prepare("SELECT company_name, bank_account FROM companies WHERE company_id = :last_insert");
     $stmt->bindParam(':last_insert', $_last_id);
-
     $stmt->execute();
-
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($data) > 0) {
+        // Prepare the data in the desired format
+        $postData = array(
+            'name' => $data[0]['company_name'],
+            'bankAccount' => $data[0]['bank_account']
+        );
 
-        $apiUrl = 'dsadsadsahtdsadsatp://rhomeserver.ddns.net:8086/companies/create/' . $_last_id;
+        $apiUrl = 'http://rhomeserver.ddns.net:8086/api/partners/create';
         echo $apiUrl;
+
         $ch = curl_init($apiUrl);
-
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
@@ -138,14 +142,13 @@ try {
         curl_close($ch);
 
         echo $response;
-
     } else {
         echo "No data found";
     }
-
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+} catch (Exception $e) {
+    echo 'Error: ' . $e->getMessage();
 }
+
 
 echo '<br>';
 

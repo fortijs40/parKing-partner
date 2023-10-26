@@ -52,6 +52,11 @@ if (empty($_POST['password_confirmed'])) {
 } elseif (isset($_POST['password_confirmed'] )) {
     $_password_confirmed=$_POST['password_confirmed'];
 }
+$_bank_account = NULL;
+if (isset($_POST['bank_account'] )) {
+    $_bank_account=$_POST['bank_account'];
+}
+$_full_name = $_first_name . ' ' . $_last_name;
 
 //$_date_created = new DateTime();
 //$_last_update = new DateTime();
@@ -84,14 +89,15 @@ try {
 
     $stmt->execute();
 
-    $stmt = $conn->prepare("INSERT INTO persons(partner_id, first_name, last_name, email, phone_number)
-                                    VALUES (:partner_id, :first_name, :last_name, :email, :phone_number)");
+    $stmt = $conn->prepare("INSERT INTO persons(partner_id, first_name, last_name, email, phone_number, bank_account)
+                                    VALUES (:partner_id, :first_name, :last_name, :email, :phone_number,:bank_account)");
 
     $stmt->bindParam(':partner_id', $_last_id);
     $stmt->bindParam(':first_name', $_first_name);
     $stmt->bindParam(':last_name', $_last_name);
     $stmt->bindParam(':email', $_email);
     $stmt->bindParam(':phone_number', $_phone_number);
+    $stmt->bindParam(':bank_account', $_bank_account);
 
     $stmt->execute();
 
@@ -111,7 +117,7 @@ try {
 
     $_last_id = $conn->lastInsertId();
 
-    $stmt = $conn->prepare("SELECT * FROM persons WHERE person_id = :last_insert");
+    $stmt = $conn->prepare("SELECT first_name, last_name, bank_account FROM persons WHERE person_id = :last_insert");
 
     $stmt->bindParam(':last_insert', $_last_id);
 
@@ -120,14 +126,17 @@ try {
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($data) > 0) {
-
-        $apiUrl = 'http://your_spring_boot_api_endpoint';
-
+        
+        $apiUrl = 'http://rhomeserver.ddns.net:8086/api/partners/create';
+        $postData = array(
+            'name' => $data[0]['first_name'] . ' ' . $data[0]['last_name'],
+            'bankAccount' => $data[0]['bank_account']
+        );
         $ch = curl_init($apiUrl);
 
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
@@ -139,7 +148,6 @@ try {
         curl_close($ch);
 
         echo $response;
-
     } else {
         echo "No data found";
     }

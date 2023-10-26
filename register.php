@@ -131,6 +131,10 @@
                         <input type="password" id="conf-password" name="password_confirmed">
                     </div>
                     <div>
+                        <label for="bankaccount">Bank Account</label>
+                        <input type="text" id="bank_account" name="bank_account" placeholder="Bank account" required>
+                    </div>
+                    <div>
                         <label for="signup"></label>
                         <input type="submit" id="signup" value="Sign Up!" class="btn btn-primary">
                     </div>
