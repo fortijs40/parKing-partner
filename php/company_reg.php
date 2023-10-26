@@ -120,7 +120,7 @@ try {
 
     if (count($data) > 0) {
 
-        $apiUrl = 'http://your_spring_boot_api_endpoint';
+        $apiUrl = 'http://rhomeserver.ddns.net:8086/companies/create/' . $_last_id;
 
         $ch = curl_init($apiUrl);
 
