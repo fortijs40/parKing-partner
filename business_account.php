@@ -88,21 +88,21 @@
                         <div class="user-account-details-input-phones">
                             <div class="user-account-details-input-container">
                                 <label for="phone_number" style="font-size: 20px;">Phone number</label>
-                                <input type="text" name="phone_number" id="phone_number" value="<?php echo $partnerData['phone_number'];?>" class="input" style="color: black">
+                                <input type="text" name="phone_number" id="phone_number" value="<?php echo $partnerData['phone_number'];?>" class="input" style="color: black" disabled>
                             </div>
                             <div class="user-account-details-input-container">
                                 <label for="second_phone_no" style="font-size: 20px;">2nd phone No.(optional)</label>
-                                <input type="text" name="second_phone_no" id="second_phone_no" value="<?php echo $partnerData['second_phone_no'];?>" class="input" style="color: black">
+                                <input type="text" name="second_phone_no" id="second_phone_no" value="<?php echo $partnerData['second_phone_no'];?>" class="input" style="color: black" disabled>
                             </div>
                         </div>                    
                         <div class="user-account-details-input-email-reg">
                             <div class="user-account-details-input-container">
                                 <label for="email" style="font-size: 20px;">Email</label>
-                                <input type="text" name="email" id="email" value="<?php echo $partnerData['email'];?>" class="input" style="color: black"> 
+                                <input type="text" name="email" id="email" value="<?php echo $partnerData['email'];?>" class="input" style="color: black" disabled> 
                             </div>
                             <div class="user-account-details-input-container">
                                 <label for="reg_no" style="font-size: 20px;">Reg. number</label>
-                                <input type="text" name="reg_no" id="reg_no" value="<?php echo $partnerData['reg_no'];?>" class="input" style="color: black">
+                                <input type="text" name="reg_no" id="reg_no" value="<?php echo $partnerData['reg_no'];?>" class="input" style="color: black" disabled>
                             </div>
                         </div>     
                     </div>
@@ -111,11 +111,11 @@
                     <div class="user-bank-details">
                         <div class="user-bank-details-input">
                             <label for="bank_account">Bank account</label>
-                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 24px; color: black">
+                            <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 20px; color: black">
                         </div>
                         <div class="user-bank-details-input">
                             <label for="billing_address">Billing adress</label>
-                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px; color: black"></textarea>
+                            <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 20px; color: black"></textarea>
                         </div>
                     </div>
                 </div>
@@ -126,36 +126,42 @@
                 </div>
                 <div class="user-account-settings">
                     <div class="user-account-settings-inputs">
-                        <div class="user-account-settings-input">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="color: black">
-                        </div>
-                        <div class="user-account-settings-input">
-                            <label for="phone_number">Phone number</label>
-                            <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="color: black">
-                        </div>
-                        <div class="user-account-settings-input">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Current password" class="input" style="color: black">
-                        </div>
-                        <div class="user-account-settings-password-confirm">
+                        <form id="updateForm"> <!-- To update the database with new info, gotta implement this-->
                             <div class="user-account-settings-input">
-                                <label for="new-password">New Password</label>
-                                <input type="password" name="new-password" id="new-password" placeholder="New password" class="input" style="color: black">
+                                <label for="email" style="height: 15px">Email</label>
+                                <input type="text" name="email" id="email" placeholder="your@email.com" class="input" style="color: black; height: 12px">
                             </div>
                             <div class="user-account-settings-input">
-                                <label for="confirm-password">Confirm Password</label>
-                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input" style="color: black">
+                                <label for="phone_number" style="height: 15px">Phone number</label>
+                                <input type="text" name="phone_number" id="phone_number" placeholder="+371 21 337 420" class="input" style="color: black; height: 12px">
                             </div>
-                        </div>
-                        <div class="user-account-update">
-                            <button class="btn btn-primary">Update</button>
-                        </div>
+                            <div class="user-account-settings-input">
+                                <label for="second_phone_no" style="height: 15px">Second phone number</label>
+                                <input type="text" name="second_phone_no" id="second_phone_no" placeholder="+371 21 337 420" class="input" style="color: black; height: 12px">
+                            </div>
+                            <div class="user-account-settings-input">
+                                <label for="password" style="height: 15px">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Current password" class="input" style="color: black; height: 12px">
+                            </div>
+                            <div class="user-account-settings-password-confirm">
+                                <div class="user-account-settings-input">
+                                    <label for="new-password" style="height: 15px">New Password</label>
+                                    <input type="password" name="new-password" id="new-password" placeholder="New password" class="input" style="color: black; height: 12px">
+                                </div>
+                                <div class="user-account-settings-input">
+                                    <label for="confirm-password" style="height: 15px">Confirm Password</label>
+                                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input" style="color: black; height: 12px">
+                                </div>
+                            </div>
+                            <div class="user-account-update">
+                                <button class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="user-account-settings">
-                    <div class="user-delete-account">
-                        <button class="btn btn-primary">Delete Account</button>
+                    <div class="user-delete-account" style="padding: 10px;">
+                        <button class="btn btn-primary" style="padding: 10px;">Delete Account</button>
                     </div>
                 </div>
             </div>
