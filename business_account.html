@@ -1,5 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< Updated upstream:business_account.html
+=======
+    <?php
+        session_name('session_1');
+        session_start();
+
+        require_once './php/connection.php';
+
+        if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
+            header("Location: login.php");
+            exit();
+        }
+
+        $updateStatus = isset($_GET['update']) ? $_GET['update'] : '';
+
+        // Display corresponding messages if data was updated
+        if ($updateStatus === 'success') {
+            echo '<script>alert("User information updated successfully. Password was changed");</script>';
+        } elseif ($updateStatus === 'no-password-change') {
+            echo '<script>alert("User information updated successfully. No password change.");</script>';
+        } elseif ($updateStatus === 'failed') {
+            echo '<script>alert("User information update failed.");</script>';
+        }elseif ($updateStatus === 'successBank') {
+            echo '<script>alert("Banking details updated successfully.");</script>';
+        }elseif ($updateStatus === 'failedBank') {
+            echo '<script>alert("Banking details update failed.");</script>';
+        }
+
+        $companyId = $_SESSION['company_id'];
+
+        $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :company_id");
+        $stmt->bindParam(':company_id', $companyId);
+        $stmt->execute();
+        $partnerData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $conn = null;
+    ?>
+
+>>>>>>> Stashed changes:business_account.php
 
 <head>
     <title>ParKing</title>
@@ -86,6 +125,7 @@
                 </div>
                 <div class="user-bank-details">
                     <div class="user-bank-details">
+<<<<<<< Updated upstream:business_account.html
                         <div class="user-bank-details-input">
                             <label for="bank_account">Bank account</label>
                             <input type="text" name="bank_account" id="bank_account" placeholder="LV82*************8305" class="input" style="font-size: 24px;">
@@ -94,6 +134,22 @@
                             <label for="billing_address">Billing adress</label>
                             <textarea name="billing_address" id="billing_address" placeholder="Plieņciema iela 35, Mārupe, Mārupes novads, Latvija,  LV-2167" class="input" style="font-size: 24px;"></textarea>
                         </div>
+=======
+                        <form action="/php/banking_upd.php" method="post" style = "margin-right: 200px">
+                            <div class="user-bank-details-input">
+                                <label for="bank_account" style="font-size: 20px;">Bank account</label>
+                                <input type="text" name="bank_account" id="bank_account" value="<?php echo $partnerData['bank_account'];?>" class="input" style="font-size: 20px; color: black">
+                            </div>
+                            <div class="user-bank-details-input">
+                                <label for="billing_address" style="font-size: 20px;">Billing adress</label>
+                                <textarea name="billing_address" id="billing_address" class="input" style="font-size: 20px; color: black"><?php echo $partnerData['billing_address']; ?></textarea>
+                            </div>
+                            <div class="user-account-update" style = "margin-left: 200px">
+                                <label for="update"></label>
+                                <input type="submit" id="update" value="Update" class="btn btn-primary">
+                            </div>
+                        </form>
+>>>>>>> Stashed changes:business_account.php
                     </div>
                 </div>
             </div>
@@ -103,6 +159,7 @@
                 </div>
                 <div class="user-account-settings">
                     <div class="user-account-settings-inputs">
+<<<<<<< Updated upstream:business_account.html
                         <div class="user-account-settings-input">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="email" placeholder="your@email.com" class="input">
@@ -116,6 +173,9 @@
                             <input type="password" name="password" id="password" placeholder="Current password" class="input">
                         </div>
                         <div class="user-account-settings-password-confirm">
+=======
+                        <form action="/php/company_upd.php" method="post">
+>>>>>>> Stashed changes:business_account.php
                             <div class="user-account-settings-input">
                                 <label for="new-password">New Password</label>
                                 <input type="password" name="new-password" id="new-password" placeholder="New password" class="input">
@@ -124,10 +184,36 @@
                                 <label for="confirm-password">Confirm Password</label>
                                 <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input">
                             </div>
+<<<<<<< Updated upstream:business_account.html
                         </div>
                         <div class="user-account-update">
                             <button class="btn btn-primary">Update</button>
                         </div>
+=======
+                            <div class="user-account-settings-input">
+                                <label for="second_phone_no" style="height: 15px">Second phone number</label>
+                                <input type="text" name="second_phone_no" id="second_phone_no" placeholder="+371 21 337 420" class="input" style="color: black; height: 12px">
+                            </div>
+                            <div class="user-account-settings-input">
+                                <label for="password" style="height: 15px">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Current password" class="input" style="color: black; height: 12px">
+                            </div>
+                            <div class="user-account-settings-password-confirm">
+                                <div class="user-account-settings-input">
+                                    <label for="new-password" style="height: 15px">New Password</label>
+                                    <input type="password" name="new-password" id="new-password" placeholder="New password" class="input" style="color: black; height: 12px">
+                                </div>
+                                <div class="user-account-settings-input">
+                                    <label for="confirm-password" style="height: 15px">Confirm Password</label>
+                                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" class="input" style="color: black; height: 12px">
+                                </div>
+                            </div>
+                            <div class="user-account-update">
+                                <label for="update"></label>
+                                <input type="submit" id="update" value="Update" class="btn btn-primary">
+                            </div>
+                        </form>
+>>>>>>> Stashed changes:business_account.php
                     </div>
                 </div>
                 <div class="user-account-settings">
