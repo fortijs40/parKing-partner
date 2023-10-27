@@ -80,12 +80,15 @@ try {
     $stmt->execute();
 
     $updateStatus = $passwordUpdateSuccess ? "success" : "no-password-change";
+    $_SESSION['updateStatus'] = $updateStatus;
 
-    header("Location: ../business_account.php?update={$updateStatus}");
+    header("Location: ../business_account.php");
 } catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();
     $updateStatus = "failed";
-    header("Location: ../user_account.php?update={$updateStatus}");
+    $_SESSION['updateStatus'] = $updateStatus;
+
+    header("Location: ../user_account.php");
 }
 
 // Close the database connection

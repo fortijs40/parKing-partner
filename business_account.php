@@ -11,7 +11,7 @@
             exit();
         }
 
-        $updateStatus = isset($_GET['update']) ? $_GET['update'] : '';
+        $updateStatus = isset($_SESSION['updateStatus']) ? $_SESSION['updateStatus'] : '';
 
         // Display corresponding messages if data was updated
         if ($updateStatus === 'success') {
@@ -26,6 +26,8 @@
             echo '<script>alert("Banking details update failed.");</script>';
         }
 
+        unset($_SESSION['updateStatus']);
+        
         $companyId = $_SESSION['company_id'];
 
         $stmt = $conn->prepare("SELECT * FROM companies WHERE company_id = :company_id");

@@ -11,7 +11,7 @@
             exit();
         }
 
-        $updateStatus = isset($_GET['update']) ? $_GET['update'] : '';
+        $updateStatus = isset($_SESSION['updateStatus']) ? $_SESSION['updateStatus'] : '';
 
         if ($updateStatus === 'success') {
             echo '<script>alert("User information updated successfully. Password was changed");</script>';
@@ -24,6 +24,8 @@
         }elseif ($updateStatus === 'failedBank') {
             echo '<script>alert("Banking details update failed.");</script>';
         }
+
+        unset($_SESSION['updateStatus']);
 
         $personId = $_SESSION['person_id'];
 
