@@ -2,7 +2,7 @@
 
 .parking-details-container, .parking-reviews-container {
     border-radius: 10px;
-    background: var(--secondary-light, #E7DFDA);
+    background-color: rgb(var(--secondary-color));
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 15px;
@@ -31,7 +31,7 @@
 .parking-details-title,
 .parking-reviews-title {
     border-radius: 10px;
-    background: var(--secondary-light, #E7DFDA);
+    background-color: rgb(var(--secondary-color));
     padding: 5px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -46,7 +46,7 @@
 .parking-spotCount-middle,
 .parking-price-right {
     border-radius: 10px;
-    background: var(--background-light, #FFF);
+    background-color: rgb(var(--background-color));
     padding: 5px;
     width: calc(33.33% - 20px); /* 33.33% width with 20px margin */
     display: flex; /* Use flexbox */
@@ -58,7 +58,7 @@
 .parking-adress-row,
 .parking-userInfo-row {
     border-radius: 10px;
-    background: var(--background-light, #FFF);
+    background-color: rgb(var(--background-color));
     padding: 5px;
     margin: 10px;
     text-align: center;
@@ -78,7 +78,7 @@
 
 .parking-details-container{
     border-radius: 10px;
-    background: var(--secondary-light, #E7DFDA);
+    background-color: rgb(var(--secondary-color));
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 15px;
@@ -104,7 +104,7 @@
 
 .parking-review-list {
     border-radius: 10px;
-    background: var(--background-light, #FFF);
+    background-color: rgb(var(--background-color));
     padding: 5px;
     margin: 10px;
     text-align: center;
@@ -121,8 +121,8 @@
 }
 
 #view-reports-btn {
-    background-color: #C03535; 
-    color: "#F6F5F4";
+    background-color: "#D12500"; 
+    color: rgb(var(--background-color));
     margin: 30px;
     padding: 10px 20px; /* Padding for the button */
     font-size: 18px;
@@ -148,7 +148,7 @@
     height: 80%;
     overflow-y: auto;
     border-radius: 10px;
-    background: var(--secondary-light, #E7DFDA);
+    background-color: rgb(var(--secondary-color));
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 15px;
@@ -163,7 +163,7 @@
   .modal-content {
     border: 1px solid rgba(0, 0, 0, 0.40);
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.95);
+    background-color: rgb(var(--accept-color));;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
     margin: 10% auto;
     padding: 20px;
@@ -173,7 +173,7 @@
   }
   
   .close {
-    color: #aaa;
+    color: rgb(var(--accent-color));
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -243,8 +243,7 @@
 }
 
 #view-reports-btn {
-    background-color: #C03535; 
-    color: "#F6F5F4";
+    background-color: rgb(var(--accept-color)); 
     margin: 30px;
     padding: 10px 20px; /* Padding for the button */
     font-size: 18px;

@@ -179,13 +179,21 @@
     margin: 20px;
 }
 
-.plans{
+.contact-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 40px 0;
     width: 100%;
+}
+
+.contact-info{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    padding: 40px 0;
+    width: 30%;
 }
 
 .plans-container{

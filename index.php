@@ -81,7 +81,7 @@
         <div class="app-dl graident-app-dl">
             <h2 class="gradient-text dark-glow-text">Try out our client web too</h2>
             <div class="app-dl-container">
-                <button class="btn btn-client" onclick="window.location.href='login.html'">Parking for clients</button>
+                <button class="btn btn-client" onclick="window.location.href='http://rhomeserver.ddns.net/parking/'">Parking for clients</button>
                 <p>You can be our client as well! Check out ParKing today and see how easy it is to find and reserve parking online!</p>
             </div>
         </div>
@@ -161,9 +161,14 @@
             <h3><b>That's it!</b></h3>
             <p><b class="gradient-text">ParKing Partner</b> makes listing unused spaces and earning money convenient.</p>
         </div>
-        <div class="plans">
-            <h2 class="gradient-text dark-glow-text">Contact us</h2>
-            
+        <div class="contact-container">
+            <h2 class="gradient-text dark-glow-text">Contacts</h2>
+            <h3>Found an issue with our webpage? Tell us!</h3>
+            <div class="contact-info">
+                <p><strong>E-mail address: </strong>info@parking.lv</p>
+                <p><strong>Phone number: </strong>+371 64 207 227</p>
+                <p><strong>Address: </strong>Tērbatas iela 10, Valmiera, Latvia, LV-4201</p>
+            </div>
         </div>
         <div class="footer">
             <img src="src/img/logo.png" alt="ParKing" class="footer-logo">

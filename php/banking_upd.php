@@ -28,10 +28,12 @@ if (isset($_SESSION['person_id'])) {
         $stmt->bindParam(':billing_address', $_billing_address);
         $stmt->execute();
 
-        echo 'Banking details updated successfully for the person.';
+        $updateStatus = "successBank";
+        header("Location: ../user_account.php?update={$updateStatus}");
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
-        echo 'Banking details were not updated for the person.';
+        $updateStatus = "failedBank";
+        header("Location: ../user_account.php?update={$updateStatus}");
     }
 } elseif (isset($_SESSION['company_id'])) {
     // User is a company
