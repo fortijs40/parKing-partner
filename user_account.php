@@ -169,11 +169,23 @@
                 </div>
                 <div class="user-account-settings">
                     <div class="user-delete-account">
-                        <button class="btn btn-primary">Delete Account</button>
+                        <button class="btn btn-primary" onclick="showConfirmationModal()">Delete Account</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script>
+    function showConfirmationModal() {
+        const isConfirmed = window.confirm("Are you sure you want to delete your account?");
+        if (isConfirmed) {
+            deleteAccount();
+        }
+    }
+
+     function deleteAccount() {
+        window.location.href = '/php/delete_acc.php';
+    }
+</script>
 <script src="src/js/main.js"></script>
