@@ -240,41 +240,39 @@ $reviews = [];
         </div>
     </div>
 
-    <div class="container2">
     <div id="notification-modal" class="modal2">
-            <div class="modal-content2">
-                <span class="close2" id="close-notification-modal" onclick="closeNotifications()">&times;</span>
-                <h1>Notifications</h1>
-                <div id="notification-content">
-                    <div class="display-notification">
-                        <div class="display-contextBox">
-                                <h4>Reservations</h4>
-                                  <?php if (count($reservations) > 0) : ?>
-                                     <?php foreach ($reservations as $reservation) : ?>
-                                         <h3>You have a new reservation for spot <?php echo $reservation['spot_id']; ?></h3>
-                                            <?php endforeach; ?>
-                                                <?php else : ?>
-                                                    <p>You have no reservations.</p>
-                                                      <?php endif; ?>                           
-                                <h4>Reports</h4>
-                                 <?php if (count($reports) > 0) : ?>
-                                   <?php foreach ($reports as $report) : ?>
-                                      <h3>A new report was submitted for spot <?php echo $report['spot_id']; ?></h3>
-                                        <?php endforeach; ?>
-                                           <?php else : ?>
-                                             <p>You have no reports.</p>
-                                                <?php endif; ?>                              
-                                  <h4>Reviews</h4>
-                                   <?php if (count($reviews) > 0) : ?>
-                                    <?php foreach ($reviews as $review) : ?>
-                                        <h3>A new review was posted for spot <?php echo $review['spot_id']; ?></h3>
-                                             <?php endforeach; ?>
-                                                 <?php else : ?>
-                                                   <p>You have no reviews.</p>
-                                                      <?php endif; ?>                      
-                          </div>
+        <div class="modal-content2">
+            <span class="close2" id="close-notification-modal" onclick="closeNotifications()">&times;</span>
+            <h1>Notifications</h1>
+            <div id="notification-content">
+                <div class="display-notification">
+                    <div class="display-contextBox">
+                        <h4>Reservations</h4>
+                        <?php if (count($reservations) > 0) : ?>
+                            <?php foreach ($reservations as $reservation) : ?>
+                                <h3>You have a new reservation for spot <?php echo $reservation['spot_id']; ?></h3>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <p>You have no reservations.</p>
+                        <?php endif; ?>                           
+                        <h4>Reports</h4>
+                        <?php if (count($reports) > 0) : ?>
+                            <?php foreach ($reports as $report) : ?>
+                                <h3>A new report was submitted for spot <?php echo $report['spot_id']; ?></h3>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <p>You have no reports.</p>
+                        <?php endif; ?>                              
+                        <h4>Reviews</h4>
+                        <?php if (count($reviews) > 0) : ?>
+                            <?php foreach ($reviews as $review) : ?>
+                                <h3>A new review was posted for spot <?php echo $review['spot_id']; ?></h3>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <p>You have no reviews.</p>
+                        <?php endif; ?>                      
+                    </div>
                     <!-- Notifications will be displayed here -->
-                   </div>
                 </div>
             </div>
         </div>
